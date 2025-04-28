@@ -5,6 +5,7 @@
 
 @theme inline {
   --font-poppins: var(--font-poppins);
+  --font-space-grotesk: var(--font-space-grotesk);
 
   --color-dark-100: #000000;
   --color-dark-200: #0f1117;
@@ -370,6 +371,14 @@
 
 .subtle-regular {
   @apply text-[10px] font-normal leading-[13px];
+}
+
+.btn-secondary {
+  @apply bg-light-800 dark:bg-dark-400;
+}
+
+.btn-tertiary {
+  @apply bg-light-700 dark:bg-dark-300;
 }
 
 .dark-gradient {

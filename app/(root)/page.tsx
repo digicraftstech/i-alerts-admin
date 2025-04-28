@@ -11,7 +11,7 @@ const Home = async () => {
       <h1 className='h2-bold'>
         {session?.user?.name} Welcome to i-Alert Insights
       </h1>
-      <form
+      {/* <form
         className='pt-[100px] px-10'
         action={async () => {
           'use server';
@@ -24,7 +24,7 @@ const Home = async () => {
         >
           Logout
         </Button>
-      </form>
+      </form> */}
     </div>
   );
 };
