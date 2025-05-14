@@ -12,9 +12,10 @@ const Navbar = () => {
           alt='iAlerts Logo'
           height={32}
           width={32}
+          className='rounded-sm'
         />
         <p className='h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden'>
-          iAlerts<span className='text-primary-500'>Insights</span>
+          iAlerts<span className='text-primary-500'> Insights</span>
         </p>
       </Link>
       <p>Global Search</p>
