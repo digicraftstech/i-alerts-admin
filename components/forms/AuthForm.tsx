@@ -28,7 +28,7 @@ import ROUTES from '@/constants/routes';
 interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
-  onSubmit: (data: T) => Promise<{ success: boolean }>;
+  onSubmit?: (data: T) => Promise<{ success: boolean }>;
   formType: 'SIGN_IN' | 'SIGN_UP';
 }
 
@@ -97,7 +97,7 @@ const AuthForm = <T extends FieldValues>({
         </Button>
         {formType === 'SIGN_IN' ? (
           <p>
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link
               href={ROUTES.SIGN_UP}
               className='paragraph-semibold primary-text-gradient'
