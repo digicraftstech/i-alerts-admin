@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  APPLICATION_PUBLISH_PROFILE: ${{ secrets.APP_PUBLISH_PROFILE }}
+  APPLICATION_PUBLISH_PROFILE: ${{ secrets.IALERTS_ADMIN_REPOSITORY_SECRET }}
   WEBAPP_NAME: 'i-alerts-admin'
 
 jobs:
