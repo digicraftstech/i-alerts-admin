@@ -4,6 +4,7 @@ const ROUTES = {
   HOME: '/',
   CATALOG: '/catalog',
   STORE: '/store',
+  SCALE: (id: string) => `/scales/${id}`,
 };
 
 export default ROUTES;

@@ -1,28 +1,37 @@
 import { auth } from '@/auth';
 import React from 'react';
+import { API_BASE_URL } from '@/constants';
+import ScaleCard from '@/components/cards/ScaleCard';
+
+const IALERTS_TOKEN = process.env.IALERTS_TOKEN as string;
+
+export const getScales = async () => {
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  headers.append('x-token', IALERTS_TOKEN);
+
+  const res = await fetch(`${API_BASE_URL}/scales`, {
+    method: 'GET',
+    headers: headers,
+  });
+  const scales = await res.json();
+  return scales.data;
+};
 
 const Home = async () => {
   const session = await auth();
-  console.log('Session: ', session);
+  // console.log('Session: ', session);
+  const scales = await getScales();
+
   return (
     <div>
-      <h1 className='h2-bold'>
-        {session?.user?.name} Welcome to i-Alert Insights
-      </h1>
-      {/* <form
-        className='pt-[100px] px-10'
-        action={async () => {
-          'use server';
-          await signOut({ redirectTo: ROUTES.SIGN_IN });
-        }}
-      >
-        <Button
-          className='bg-primary-500 text-primary-foreground'
-          type='submit'
-        >
-          Logout
-        </Button>
-      </form> */}
+      <h5 className='text-primary-500'>{session?.user?.name} </h5>
+      <h1 className='h2-bold'>Welcome to i-Alert Insights</h1>
+      <div className='mt-10 flex w-full flex-col gap-6'>
+        {scales.map((scale: Scale) => (
+          <ScaleCard key={scale.ss_id} scale={scale} />
+        ))}
+      </div>
     </div>
   );
 };

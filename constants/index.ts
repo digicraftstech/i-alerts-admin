@@ -17,3 +17,5 @@ export const sideBarLinks = [
     route: ROUTES.STORE,
   },
 ];
+
+export const API_BASE_URL = 'http://20.244.12.56:9725';
