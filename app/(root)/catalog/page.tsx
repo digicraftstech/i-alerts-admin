@@ -5,7 +5,7 @@ import ProductCard from '@/components/cards/ProductCard';
 
 const IALERTS_TOKEN = process.env.IALERTS_TOKEN as string;
 
-export const getProducts = async () => {
+const getProducts = async () => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   headers.append('x-token', IALERTS_TOKEN);
