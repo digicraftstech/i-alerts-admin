@@ -5,7 +5,7 @@ import ScaleCard from '@/components/cards/ScaleCard';
 
 const IALERTS_TOKEN = process.env.IALERTS_TOKEN as string;
 
-export const getScales = async () => {
+const getScales = async () => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   headers.append('x-token', IALERTS_TOKEN);
