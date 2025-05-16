@@ -19,3 +19,5 @@ export const sideBarLinks = [
 ];
 
 export const API_BASE_URL = 'http://20.244.12.56:9725';
+export const IALERTS_TOKEN =
+  'BchIC/Fm0YwxfUblCVV3Wbgt7aTi9alCI/iFzMTyvhbEaUrloq85Ig==';

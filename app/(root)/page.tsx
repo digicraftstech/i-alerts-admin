@@ -1,9 +1,7 @@
 import { auth } from '@/auth';
 import React from 'react';
-import { API_BASE_URL } from '@/constants';
+import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import ScaleCard from '@/components/cards/ScaleCard';
-
-const IALERTS_TOKEN = process.env.IALERTS_TOKEN as string;
 
 const getScales = async () => {
   const headers = new Headers();

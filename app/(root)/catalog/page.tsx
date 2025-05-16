@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { API_BASE_URL } from '@/constants';
+import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import ProductCard from '@/components/cards/ProductCard';
-
-const IALERTS_TOKEN = process.env.IALERTS_TOKEN as string;
 
 const getProducts = async () => {
   const headers = new Headers();
