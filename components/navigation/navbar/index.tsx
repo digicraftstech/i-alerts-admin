@@ -18,7 +18,7 @@ const Navbar = () => {
           iAlerts<span className='text-primary-500'> Insights</span>
         </p>
       </Link>
-      <p>Global Search</p>
+      {/* <p>Global Search</p> */}
       <div className='flex-between gap-5'>
         <ThemeSwitcher />
         <MobileNavigation />

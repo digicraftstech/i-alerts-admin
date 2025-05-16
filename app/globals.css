@@ -19,7 +19,8 @@
   --color-light-regular: #f4f6f8; /* Light gray */
 
   --color-primary-100: #fff1e6;
-  --color-primary-500: #ff7000;
+  --color-primaryX-500: #ff7000;
+  --color-primary-500: #1b8dd3;
   --color-dark-100: #000000;
   --color-dark-200: #0f1117;
   --color-dark-300: #151821;
@@ -204,7 +205,8 @@
 }
 
 .card-background-alerted {
-  @apply !bg-light-alerted dark:!bg-dark-alerted;
+  /* @apply !bg-light-alerted dark:!bg-dark-alerted; */
+  @apply !bg-light-alerted dark:!bg-red-500;
 }
 
 .card-background-acknowledged {
@@ -330,13 +332,18 @@
   }
 }
 
-.primary-gradient {
+/* .primary-gradient {
   background: linear-gradient(
     129deg,
     rgb(255, 112, 0) 0%,
     rgb(226, 153, 95) 100%
   );
+} */
+
+.primary-gradient {
+  background: linear-gradient(129deg, #82b9e2 0%, #1b8de3 100%);
 }
+
 .primary-text-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   background-clip: text;

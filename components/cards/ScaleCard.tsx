@@ -21,61 +21,56 @@ const ScaleCard = ({
     product,
   },
 }: ScaleCardProps) => {
+  status = 'alerted';
   const bgColor = status
     ? `card-background-${status}`
     : 'card-background-regular';
 
   return (
-    <div className={`card-wrapper rounded-[10px] p-9 sm:px-11 ${bgColor}`}>
-      <div className='flex flex-col-reverse items-start justify-between gap-6 sm:flex-row'>
+    <div
+      className={`card-wrapper rounded-[10px] min-w-[300px] p-9 sm:px-11 ${bgColor}`}
+    >
+      <Link href={ROUTES.SCALE(ss_id)}>
         <div>
-          <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
+          <div>
+            <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
+              {ss_unique_name}
+            </span>
+            <h3 className='base-semibold'>{`${product.product_plu} ${product.product_name}`}</h3>
+          </div>
+        </div>
+        <div className='mt-2'>
+          <div className='mt-1 small-medium'>
+            Last Reading{': '}
+            <span className='body-bold'>{`${last_reading} ${product.weight_unit}`}</span>
+            {/* {`Last Reading: ${last_reading} ${product.weight_unit}`} */}
+          </div>
+          <div className='mt-1 small-medium'>
             {`Updated At: ${getDateTimeString(
               new Date(last_reading_datetime)
             )}`}
-          </span>
-          <Link href={ROUTES.SCALE(ss_id)}>
-            <h3 className='base-semibold'>{ss_unique_name}</h3>
-          </Link>
+          </div>
         </div>
-      </div>
-      <div className='flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start'>
-        <div className='mt-3.5 flex w-full flex-wrap gap-2'>
-          {`Current Weight: ${last_reading} ${product.weight_unit}`}
+        <div className='mt-3.5'>
+          <div className='mt-1 '>
+            <Metric
+              value={allocation_weight}
+              unit={product.weight_unit}
+              title='Allocation Weight: '
+              textStyles='small-medium text-dark400_light800'
+            />
+          </div>
+          <div className='mt-1 '>
+            <Metric
+              value={threshold_weight}
+              unit={product.weight_unit}
+              title='Threshold Weight: '
+              textStyles='small-medium text-dark400_light800'
+            />
+          </div>
         </div>
-        <div className='mt-3.5 flex w-full flex-wrap gap-2'>
-          {`${product.product_plu} ${product.product_name}`}
-        </div>
-      </div>
-      <div className='flex-between mt-6 w-full flex-wrap gap-3'>
-        <div className='flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start'>
-          <Metric
-            value={allocation_weight}
-            unit={product.weight_unit}
-            title='Allocation Weight: '
-            textStyles='small-medium text-dark400_light800'
-          />
-          <Metric
-            value={threshold_weight}
-            unit={product.weight_unit}
-            title='Threshold Weight: '
-            textStyles='small-medium text-dark400_light800'
-          />
-        </div>
-      </div>
+      </Link>
     </div>
-    // <div className='card-wrapper rounded-[10px] p-9 sm:px-11'>
-    //   <div className='flex flex-col-reverse items-start justify-between gap-5 sm:flex-row'>
-    //     <div>
-    //       <span className='subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden'>
-    //         {getDateTimeString(new Date(last_reading_datetime))}
-    //       </span>
-    //       <Link href={ROUTES.SCALE(ss_id)}>
-    //         <h3 className='base-semibold'>{ss_unique_name}</h3>
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

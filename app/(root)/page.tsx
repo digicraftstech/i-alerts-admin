@@ -25,7 +25,7 @@ const Home = async () => {
     <div>
       <h5 className='text-primary-500'>{session?.user?.name} </h5>
       <h1 className='h2-bold'>Welcome to i-Alert Insights</h1>
-      <div className='mt-10 flex w-full flex-col gap-6'>
+      <div className='mt-10 flex w-full flex-row flex-wrap max-sm:flex-col gap-9'>
         {scales.map((scale: Scale) => (
           <ScaleCard key={scale.ss_id} scale={scale} />
         ))}
