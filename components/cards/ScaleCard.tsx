@@ -21,7 +21,6 @@ const ScaleCard = ({
     product,
   },
 }: ScaleCardProps) => {
-  status = 'alerted';
   const bgColor = status
     ? `card-background-${status}`
     : 'card-background-regular';
