@@ -102,12 +102,18 @@ export const getExactTimeDifference = (toDate: Date, fromDate: Date) => {
 
   const seconds = Math.floor(diffMs / 1000);
 
-  const parts = [];
-  if (days > 0) parts.push(`${days} day${days > 1 ? 's' : ''}`);
-  if (hours > 0) parts.push(`${hours} hour${hours > 1 ? 's' : ''}`);
-  if (minutes > 0) parts.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
-  if (seconds > 0 || parts.length === 0)
-    parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
+  // const parts = [];
+  // if (days > 0) parts.push(`${days} day${days > 1 ? 's' : ''}`);
+  // if (hours > 0) parts.push(`${hours} hr${hours > 1 ? 's' : ''}`);
+  // if (minutes > 0) parts.push(`${minutes} min${minutes > 1 ? 's' : ''}`);
+  // if (seconds > 0 || parts.length === 0)
+  //   parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
 
-  return parts.join(', ').replace(/,([^,]*)$/, ' and$1');
+  const parts = [];
+  if (days > 0) parts.push(`${days}`);
+  if (hours > 0) parts.push(`${hours}`);
+  if (minutes > 0) parts.push(`${minutes}`);
+  if (seconds > 0 || parts.length === 0) parts.push(`${seconds}`);
+
+  return parts.join(':').replace(/,([^,]*)$/, ' and$1');
 };

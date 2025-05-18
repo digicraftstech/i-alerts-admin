@@ -115,7 +115,7 @@ export const notificationColumns: ColumnDef<Notification>[] = [
         );
       }
 
-      return <div className='text-left font-medium'>{value}</div>;
+      return <div className='text-right font-medium'>{value}</div>;
     },
   },
 ];

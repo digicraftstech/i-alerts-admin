@@ -71,7 +71,8 @@ const ScaleDetails = async ({ params }: ScaleParams) => {
   const notifications = await getNotifications(id);
   const scale = await getScale(id);
   return (
-    <div className='flex flex-col mx-auto py-10 gap-6'>
+    <div className='mt-10 flex w-full flex-col gap-6'>
+      {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}
       <ScaleCard scale={scale} />
       <DataTable data={notifications} columns={notificationColumns} />
     </div>
