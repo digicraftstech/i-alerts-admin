@@ -25,7 +25,6 @@ const ScaleCard = ({
     ? `card-background-${status}`
     : 'card-background-regular';
 
-  console.log('bgColor: ', bgColor);
   return (
     <div
       className={`card-wrapper rounded-[10px] min-w-[300px] p-9 sm:px-11 ${bgColor}`}
