@@ -2,7 +2,7 @@ import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import React from 'react';
 import { DataTable } from './data-table';
 import { notificationColumns } from './columns';
-import ScaleCard from '@/components/cards/ScaleCard';
+import ScaleCardCompact from '@/components/cards/ScaleCardCompact';
 
 const getScale = async (id: string) => {
   const headers = new Headers();
@@ -70,10 +70,11 @@ const ScaleDetails = async ({ params }: ScaleParams) => {
 
   const notifications = await getNotifications(id);
   const scale = await getScale(id);
+  console.log('scale: ', scale);
   return (
     <div className='mt-10 flex w-full flex-col gap-6'>
       {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}
-      <ScaleCard scale={scale} />
+      <ScaleCardCompact scale={scale} />
       <DataTable data={notifications} columns={notificationColumns} />
     </div>
   );

@@ -351,11 +351,11 @@
 */
 
 .primary-gradient {
-  background: linear-gradient(129deg, #82b9e2 0%, #1b8de3 100%);
+  background: linear-gradient(129deg, #67aee4 0%, #1b8de3 100%);
 }
 
 .primary-text-gradient {
-  background: linear-gradient(129deg, #1b8de3 0%, #82b9e2 100%);
+  background: linear-gradient(129deg, #1b8de3 0%, #67aee4 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

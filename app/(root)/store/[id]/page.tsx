@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Store = () => {
-  return <div>Store</div>;
+  return <div>Store detais will be available here.</div>;
 };
 
 export default Store;

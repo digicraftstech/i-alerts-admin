@@ -79,7 +79,6 @@ export const notificationColumns: ColumnDef<Notification>[] = [
       let value = '-';
 
       if (rowVal) {
-        console.log('rowVal: ', rowVal);
         const dateString = row.getValue('alert_ack_datetime') as string;
         value = new Date(dateString).toLocaleTimeString();
       }

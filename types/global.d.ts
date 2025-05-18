@@ -7,7 +7,7 @@ type Scale = {
   allocation_weight: number;
   status: string;
   product: Product;
-  location: Location;
+  location: ScaleLocation;
 };
 
 type Product = {
@@ -18,7 +18,7 @@ type Product = {
   weight_unit: string;
 };
 
-type Location = {
+type ScaleLocation = {
   map_id: string;
   location_name: string;
   row: number;
