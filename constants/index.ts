@@ -8,9 +8,10 @@ export const sideBarLinks = [
   },
   {
     imgURL: '/icons/catalog.svg',
-    label: 'Catalog',
+    label: 'Product Catalog',
     route: ROUTES.CATALOG,
   },
+
   {
     imgURL: '/icons/store.svg',
     label: 'Store Details',

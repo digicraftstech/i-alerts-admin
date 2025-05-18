@@ -8,27 +8,37 @@ const getScales = async () => {
   headers.append('Content-Type', 'application/json');
   headers.append('x-token', IALERTS_TOKEN);
 
-  const res = await fetch(`${API_BASE_URL}/scales`, {
-    method: 'GET',
-    headers: headers,
-  });
-  const scales = await res.json();
-  return scales.data;
+  try {
+    const res = await fetch(`${API_BASE_URL}/scales`, {
+      method: 'GET',
+      headers: headers,
+    });
+    const scales = await res.json();
+
+    return scales.data;
+  } catch (error) {
+    console.log('Error while fetching data: ', error);
+    return [];
+  }
 };
 
 const Home = async () => {
   const session = await auth();
-  // console.log('Session: ', session);
+
   const scales = await getScales();
 
   return (
     <div>
       <h5 className='text-primary-500'>{session?.user?.name} </h5>
-      <h1 className='h2-bold'>Welcome to i-Alert Insights</h1>
+      <h1 className='h2-bold'>Dashboard</h1>
       <div className='mt-10 flex w-full flex-row flex-wrap max-sm:flex-col gap-9'>
-        {scales.map((scale: Scale) => (
-          <ScaleCard key={scale.ss_id} scale={scale} />
-        ))}
+        {scales && scales.length ? (
+          scales.map((scale: Scale) => (
+            <ScaleCard key={scale.ss_id} scale={scale} />
+          ))
+        ) : (
+          <h1>No scales added.</h1>
+        )}
       </div>
     </div>
   );

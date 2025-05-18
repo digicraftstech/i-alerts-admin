@@ -7,6 +7,7 @@ type Scale = {
   allocation_weight: number;
   status: string;
   product: Product;
+  location: Location;
 };
 
 type Product = {
@@ -15,4 +16,17 @@ type Product = {
   product_plu: number;
   image: string;
   weight_unit: string;
+};
+
+type Location = {
+  map_id: string;
+  location_name: string;
+  row: number;
+  fixture_no: string;
+};
+
+type Reading = {
+  record_id: string;
+  weight_reading: number;
+  reading_datetime: string;
 };

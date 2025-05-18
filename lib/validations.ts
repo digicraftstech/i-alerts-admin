@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z, z } from 'zod';
 
 export const SignInSchema = z.object({
   email: z
@@ -47,4 +47,22 @@ export const SignUpSchema = z.object({
     .regex(/[^a-zA-Z0-9]/, {
       message: 'Password must contain at least one special character.',
     }),
+});
+
+export const AddScaleSchema = z.object({
+  uuid: z
+    .string()
+    .min(6, 'UUID should be at least 6 characters long.')
+    .max(20, 'UUID must not exceed 20 characters.'),
+  name: z
+    .string()
+    .min(6, 'Name should be at least 6 characters long.')
+    .max(20, 'Name must not exceed 20 characters.'),
+  fixture: z.number().int().positive(),
+  row: z.enum(['Front', 'Back', 'Center']),
+  location: z
+    .string()
+    .min(6, 'Location should be at least 6 characters long.')
+    .max(20, 'Location must not exceed 20 characters.'),
+  product: z.string().min(1, 'Product is required.'),
 });

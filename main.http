@@ -87,12 +87,12 @@ x-token: {{token}}
 }
 
 ### Getting Individual scale
-GET {{url}}/scales/12/readings
+GET {{url}}/scales/2/readings
 x-token: {{token}}
 
 
 ### Find notification for ss
-GET {{url}}/scales/8/notifications
+GET {{url}}/scales/2/notifications
 x-token: {{token}}
 
 ### Get notifications
@@ -101,7 +101,7 @@ x-token: {{token}}
 
 
 ### Find notification
-GET {{url}}/scales/notifications/4
+GET {{url}}/scales/notifications/2
 x-token: {{token}}
 
 
