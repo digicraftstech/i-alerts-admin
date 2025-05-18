@@ -74,13 +74,17 @@ export const notificationColumns: ColumnDef<Notification>[] = [
     accessorKey: 'alert_ack_datetime',
     header: 'Acknowledged At',
     cell: ({ row }) => {
-      const dateString = row.getValue('alert_ack_datetime') as string;
-      const formattedDate = new Date(dateString).toLocaleTimeString();
-      return (
-        <div className='text-left font-medium'>
-          {formattedDate.toLocaleString()}
-        </div>
-      );
+      const rowVal = row.getValue('alert_ack_datetime');
+
+      let value = '-';
+
+      if (rowVal) {
+        console.log('rowVal: ', rowVal);
+        const dateString = row.getValue('alert_ack_datetime') as string;
+        value = new Date(dateString).toLocaleTimeString();
+      }
+
+      return <div className='text-left font-medium'>{value}</div>;
     },
   },
   {
@@ -100,11 +104,18 @@ export const notificationColumns: ColumnDef<Notification>[] = [
     accessorKey: '',
     header: 'Time Taken',
     cell: ({ row }) => {
-      const timeTaken = getExactTimeDifference(
-        new Date(row.getValue('alert_raised_datetime')),
-        new Date(row.getValue('alert_addressed_datetime'))
-      );
-      return <div className='text-left font-medium'>{timeTaken}</div>;
+      const rowValFrom = row.getValue('alert_raised_datetime') as string;
+      const rowValTo = row.getValue('alert_addressed_datetime') as string;
+
+      let value = '-';
+      if (rowValTo && rowValFrom) {
+        value = getExactTimeDifference(
+          new Date(rowValTo),
+          new Date(rowValFrom)
+        );
+      }
+
+      return <div className='text-left font-medium'>{value}</div>;
     },
   },
 ];
