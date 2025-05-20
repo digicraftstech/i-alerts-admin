@@ -20,7 +20,9 @@
 
   --color-primary-100: #fff1e6;
   --color-primaryX-500: #ff7000;
-  --color-primary-500: #1b8dd3;
+  /* --color-primary-500: #1b8dd3; Blue 1 Random*/
+  /* --color-primary-500: #235cfe; Blue 2 Gemini AI */
+  --color-primary-500: #174cff; /* Blue Intelera */
   --color-dark-100: #000000;
   --color-dark-200: #0f1117;
   --color-dark-300: #151821;
@@ -346,16 +348,39 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-
 */
 
-.primary-gradient {
+/* BLue 1 Random*/
+/* .primary-gradient {
   background: linear-gradient(129deg, #67aee4 0%, #1b8de3 100%);
 }
 
 .primary-text-gradient {
   background: linear-gradient(129deg, #1b8de3 0%, #67aee4 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+
+/* Blue 2 - Gemini AI */
+/* .primary-gradient {
+  background: linear-gradient(129deg, #538efc 0%, #235cfe 100%);
+}
+
+.primary-text-gradient {
+  background: linear-gradient(129deg, #235cfe 0%, #538efc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+
+/* Blue IntelEra */
+.primary-gradient {
+  background: linear-gradient(129deg, #2395ff 0%, #174cff 100%);
+}
+
+.primary-text-gradient {
+  background: linear-gradient(129deg, #174cff 0%, #2395ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
