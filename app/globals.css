@@ -18,8 +18,8 @@
   --color-light-acknowledged: #e6f7ff; /* Light blue */
   --color-light-regular: #f4f6f8; /* Light gray */
 
-  --color-primary-100: #fff1e6;
-  --color-primaryX-500: #ff7000;
+  /* --color-primary-100: #fff1e6; */
+  --color-primary-100: #2395ff;
   /* --color-primary-500: #1b8dd3; Blue 1 Random*/
   /* --color-primary-500: #235cfe; Blue 2 Gemini AI */
   --color-primary-500: #174cff; /* Blue Intelera */
@@ -196,6 +196,10 @@
 
 .background-light800_dark200 {
   @apply bg-light-800 dark:bg-dark-200;
+}
+
+.background-light700_dark200 {
+  @apply bg-light-700 dark:bg-dark-200;
 }
 
 .background-dark400_light900 {

@@ -1,10 +1,10 @@
 import React from 'react';
 import NavLinks from './navbar/NavLinks';
 
-import ROUTES from '@/constants/routes';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import Image from 'next/image';
+// import ROUTES from '@/constants/routes';
+// import Link from 'next/link';
+// import { Button } from '../ui/button';
+// import Image from 'next/image';
 
 const LeftSideBar = () => {
   return (
@@ -12,7 +12,7 @@ const LeftSideBar = () => {
       <div className='flex flex-1 flex-col gap-6'>
         <NavLinks />
       </div>
-      <div className='flex flex-col gap-3'>
+      {/* <div className='flex flex-col gap-3'>
         <Button
           asChild
           className='small-medium btn-secondary min-[41px] w-full rounded-lg px-4 py-3 shadow-none'
@@ -44,7 +44,7 @@ const LeftSideBar = () => {
             <span className='max-lg:hidden'>Sign Up</span>
           </Link>
         </Button>
-      </div>
+      </div> */}
     </section>
   );
 };

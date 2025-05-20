@@ -8,14 +8,14 @@ const Navbar = () => {
     <nav className='flex-between w-full z-50 background-light900_dark200 p-6 fixed gap-5 shadow-light-300 dark:shadow-none sm:px-12'>
       <Link href='/' className='flex items-center gap-3'>
         <Image
-          src='/images/site-logo.png'
+          src='/images/intelera-logo.png'
           alt='iAlerts Logo'
           height={32}
           width={32}
           className='rounded-sm'
         />
         <p className='h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden'>
-          iAlerts<span className='text-primary-500'> Insights</span>
+          iAlerts<span className='text-primary-100'> Insights</span>
         </p>
       </Link>
       {/* <p>Global Search</p> */}

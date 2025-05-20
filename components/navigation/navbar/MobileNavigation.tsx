@@ -9,8 +9,8 @@ import {
 } from '@/components/ui/sheet';
 import Image from 'next/image';
 import Link from 'next/link';
-import ROUTES from '@/constants/routes';
-import { Button } from '@/components/ui/button';
+// import ROUTES from '@/constants/routes';
+// import { Button } from '@/components/ui/button';
 import NavLinks from './NavLinks';
 
 const MobileNavigation = () => {
@@ -33,7 +33,7 @@ const MobileNavigation = () => {
           <SheetTitle className='hidden'>Navigation</SheetTitle>
           <Link href='/' className='flex items-center gap-3'>
             <Image
-              src='/images/site-logo.png'
+              src='/images/intelera-logo.png'
               alt='Logo'
               width={23}
               height={23}
@@ -48,7 +48,7 @@ const MobileNavigation = () => {
                 <NavLinks isMobileNav />
               </section>
             </SheetClose>
-            <div className='flex flex-col gap-3'>
+            {/* <div className='flex flex-col gap-3'>
               <SheetClose asChild>
                 <Link href={ROUTES.SIGN_IN}>
                   <Button className='small-medium btn-secondary min-[41px] w-full rounded-lg px-4 py-3 shadow-none'>
@@ -63,7 +63,7 @@ const MobileNavigation = () => {
                   </Button>
                 </Link>
               </SheetClose>
-            </div>
+            </div> */}
           </div>
         </SheetHeader>
       </SheetContent>

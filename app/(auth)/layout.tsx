@@ -16,7 +16,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
             </p>
           </div>
           <Image
-            src='/images/site-logo.png'
+            src='/images/intelera-logo.png'
             alt='iAlert Logo'
             width={50}
             height={50}
