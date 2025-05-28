@@ -10,13 +10,15 @@
   --font-inter: var(--font-inter);
   --font-space-grotesk: var(--font-space-grotesk);
 
-  --color-dark-alerted: #5a1a1c; /* Dark Red*/
-  --color-dark-acknowledged: #1a3a4d; /* Muted dark blue */
-  --color-dark-regular: #1e1e2a; /* Dark gray */
+  --color-dark-alerted: #b51016; /* Dark Red*/
+  --color-dark-acknowledged: #35769c; /* Muted dark blue */
+  --color-dark-regular: #2a824d; /* Dark gray */
+  --color-dark-addressed: #2b2b38; /* Dark green */
 
-  --color-light-alerted: #ffe4e6; /* Light red/pink */
-  --color-light-acknowledged: #e6f7ff; /* Light blue */
-  --color-light-regular: #f4f6f8; /* Light gray */
+  --color-light-alerted: #faafb4; /* Light red/pink */
+  --color-light-acknowledged: #a6ddf7; /* Light blue */
+  --color-light-regular: #c4f5c9; /* Light gray */
+  --color-light-addressed: #d7d8d9; /* Light green */
 
   /* --color-primary-100: #fff1e6; */
   --color-primary-100: #2395ff;
@@ -212,7 +214,7 @@
 
 .card-background-alerted {
   /* @apply !bg-light-alerted dark:!bg-dark-alerted; */
-  @apply !bg-light-alerted dark:!bg-red-500;
+  @apply !bg-light-alerted dark:!bg-dark-alerted;
 }
 
 .card-background-acknowledged {

@@ -17,6 +17,16 @@ export const sideBarLinks = [
     label: 'Store Details',
     route: ROUTES.STORE,
   },
+  {
+    imgURL: '/icons/add-scale.svg',
+    label: 'Add a Scale',
+    route: ROUTES.ADD_SCALE,
+  },
+  {
+    imgURL: '/icons/add-product.svg',
+    label: 'Add a Product',
+    route: ROUTES.ADD_PRODUCT,
+  },
 ];
 
 export const API_BASE_URL = 'http://20.244.12.56:9725';

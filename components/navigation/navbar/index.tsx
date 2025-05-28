@@ -5,7 +5,7 @@ import MobileNavigation from './MobileNavigation';
 
 const Navbar = () => {
   return (
-    <nav className='flex-between w-full z-50 background-light900_dark200 p-6 fixed gap-5 shadow-light-300 dark:shadow-none sm:px-12'>
+    <nav className='flex-between w-full z-50 background-light800_dark200 p-6 fixed gap-5 shadow-light-300 dark:shadow-none sm:px-12'>
       <Link href='/' className='flex items-center gap-3'>
         <Image
           src='/images/intelera-logo.png'

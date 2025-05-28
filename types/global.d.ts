@@ -8,6 +8,7 @@ type Scale = {
   status: string;
   product: Product;
   location: ScaleLocation;
+  alert: Alert;
 };
 
 type Product = {
@@ -29,4 +30,10 @@ type Reading = {
   record_id: string;
   weight_reading: number;
   reading_datetime: string;
+};
+
+type Alert = {
+  alert_raised_datetime: string;
+  alert_ack_datetime: string;
+  alert_addressed_datetime: string;
 };

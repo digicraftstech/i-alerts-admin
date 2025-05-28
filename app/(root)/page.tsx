@@ -2,6 +2,8 @@ import { auth } from '@/auth';
 import React from 'react';
 import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import ScaleCard from '@/components/cards/ScaleCard';
+import handleError from '@/lib/handlers/error';
+import { NotFoundError, ValidationError } from '@/lib/http-errors';
 
 const getScales = async () => {
   const headers = new Headers();
@@ -22,9 +24,24 @@ const getScales = async () => {
   }
 };
 
-const Home = async () => {
-  const session = await auth();
+const testError = async () => {
+  try {
+    // throw new Error('Test Error');
+    // throw new NotFoundError('Home');
+    throw new ValidationError({
+      title: ['Required'],
+      tags: ['"Javascript" is not a valid tag.'],
+    });
+  } catch (error) {
+    return handleError(error);
+  }
+};
 
+const Home = async () => {
+  // const result = await testError();
+  // console.log(result);
+
+  const session = await auth();
   const scales = await getScales();
 
   return (

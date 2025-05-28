@@ -49,20 +49,46 @@ export const SignUpSchema = z.object({
     }),
 });
 
+export const LocationSchema = z.object({
+  fixture: z.number().nonnegative(),
+  row: z.enum(['Front', 'Back', 'Center']),
+  location_name: z
+    .string()
+    .min(6, 'Location should be at least 6 characters long.')
+    .max(20, 'Location must not exceed 20 characters.'),
+});
+
+export const ProductSchema = z.object({
+  product_plu: z.string().nonempty('PLU code is required.'),
+  product_name: z
+    .string()
+    .min(6, 'Product should be at least 6 characters long.')
+    .max(30, 'Product must not exceed 30 characters.'),
+  image: z.string().nonempty('Product image is required.'),
+  // image: z.object({
+  //   image: z
+  //     .any()
+  //     .refine((file) => file?.length == 1, 'Image is required.')
+  //     .refine((file) => file[0]?.size <= 3000000, 'Max file size is 3MB.'),
+  // }),
+  weight_unit: z.enum(['lbs', 'kg']).default('lbs'),
+});
+
 export const AddScaleSchema = z.object({
   uuid: z
     .string()
     .min(6, 'UUID should be at least 6 characters long.')
     .max(20, 'UUID must not exceed 20 characters.'),
-  name: z
+  oem_name: z
     .string()
-    .min(6, 'Name should be at least 6 characters long.')
+    .min(6, 'OEM should be at least 6 characters long.')
     .max(20, 'Name must not exceed 20 characters.'),
-  fixture: z.number().int().positive(),
-  row: z.enum(['Front', 'Back', 'Center']),
-  location: z
+  model_name: z
     .string()
-    .min(6, 'Location should be at least 6 characters long.')
-    .max(20, 'Location must not exceed 20 characters.'),
-  product: z.string().min(1, 'Product is required.'),
+    .min(6, 'Model should be at least 6 characters long.')
+    .max(20, 'Name must not exceed 20 characters.'),
+  allocation_weight: z.number().int().positive(),
+  threshold_weight: z.number().int().positive(),
+  location: z.object({ LocationSchema }),
+  product: z.object({ ProductSchema }),
 });

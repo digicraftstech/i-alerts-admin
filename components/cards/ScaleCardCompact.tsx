@@ -1,4 +1,5 @@
 import ROUTES from '@/constants/routes';
+import { getConvertedWeightString } from '@/lib/conversions';
 import { getDateTimeString } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -39,7 +40,10 @@ const ScaleCardCompact = ({
         <div className='mt-2'>
           <div className='mt-1 small-medium'>
             Last Reading{': '}
-            <span className='body-bold'>{`${last_reading} ${product.weight_unit}`}</span>
+            <span className='body-bold'>{`${getConvertedWeightString(
+              last_reading,
+              'oz-lboz'
+            )}`}</span>
             {/* {`Last Reading: ${last_reading} ${product.weight_unit}`} */}
           </div>
           <div className='mt-1 small-medium'>

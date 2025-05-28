@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import React from 'react';
 import Metric from '../Metric';
+import { getConvertedWeightString } from '@/lib/conversions';
 
 interface ScaleCardProps {
   scale: Scale;
@@ -15,15 +16,21 @@ const ScaleCard = ({
     ss_unique_name,
     last_reading,
     last_reading_datetime,
-    status,
     threshold_weight,
     allocation_weight,
     product,
+    alert,
   },
 }: ScaleCardProps) => {
-  const bgColor = status
-    ? `card-background-${status}`
-    : 'card-background-regular';
+  let status = 'regular';
+  if (alert) {
+    if (alert.alert_addressed_datetime) status = 'addressed';
+    else if (alert.alert_ack_datetime) status = 'acknowledged';
+    else if (alert.alert_raised_datetime) status = 'alerted';
+    else status = 'regular';
+  }
+  const bgColor = `card-background-${status}`;
+  // console.log('bgColor: ', bgColor);
 
   return (
     <div
@@ -35,13 +42,18 @@ const ScaleCard = ({
             <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
               {ss_unique_name}
             </span>
-            <h3 className='base-semibold'>{`${product.product_plu} ${product.product_name}`}</h3>
+            <h3 className='base-semibold'>{`${product?.product_plu || '-'} ${
+              product?.product_name || '-'
+            }`}</h3>
           </div>
         </div>
         <div className='mt-2'>
           <div className='mt-1 small-medium'>
             Last Reading{': '}
-            <span className='body-bold'>{`${last_reading} ${product.weight_unit}`}</span>
+            <span className='body-bold'>{`${getConvertedWeightString(
+              last_reading,
+              'oz-lboz'
+            )}`}</span>
             {/* {`Last Reading: ${last_reading} ${product.weight_unit}`} */}
           </div>
           <div className='mt-1 small-medium'>
@@ -53,16 +65,14 @@ const ScaleCard = ({
         <div className='mt-3.5'>
           <div className='mt-1 '>
             <Metric
-              value={allocation_weight}
-              unit={product.weight_unit}
+              value={getConvertedWeightString(allocation_weight, 'oz-lboz')}
               title='Allocation Weight: '
               textStyles='small-medium text-dark400_light800'
             />
           </div>
           <div className='mt-1 '>
             <Metric
-              value={threshold_weight}
-              unit={product.weight_unit}
+              value={getConvertedWeightString(threshold_weight, 'oz-lboz')}
               title='Threshold Weight: '
               textStyles='small-medium text-dark400_light800'
             />

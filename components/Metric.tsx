@@ -3,7 +3,7 @@ import React from 'react';
 interface MetricProps {
   title: string;
   value: string | number;
-  unit: string;
+  unit?: string;
   textStyles?: string;
 }
 
@@ -12,9 +12,9 @@ const Metric = ({ title, value, unit, textStyles }: MetricProps) => {
     <>
       <p className={`${textStyles} flex items-center gap-1`}>
         {title}
-        <span
-          className={`small-regular line-clamp-1 `}
-        >{`${value} ${unit}`}</span>
+        <span className={`small-regular line-clamp-1 `}>{`${value} ${
+          unit ? unit : ''
+        }`}</span>
       </p>
     </>
   );
