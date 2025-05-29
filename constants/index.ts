@@ -29,6 +29,10 @@ export const sideBarLinks = [
   },
 ];
 
-export const API_BASE_URL = 'http://20.244.12.56:9725';
+// export const API_BASE_URL = 'http://20.244.12.56:9725';
+// export const IALERTS_TOKEN =
+//   'BchIC/Fm0YwxfUblCVV3Wbgt7aTi9alCI/iFzMTyvhbEaUrloq85Ig==';
+
+export const API_BASE_URL = 'http://98.70.27.104:9725';
 export const IALERTS_TOKEN =
-  'BchIC/Fm0YwxfUblCVV3Wbgt7aTi9alCI/iFzMTyvhbEaUrloq85Ig==';
+  'xkvl9zJNVxiRGJLJYCFTGSqzETaOxFC54lLD8THXjcJQZddNHo7Flg==';

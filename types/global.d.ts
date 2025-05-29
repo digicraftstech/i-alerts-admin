@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 type Scale = {
   ss_id: string;
   ss_unique_name: string;
@@ -37,3 +39,19 @@ type Alert = {
   alert_ack_datetime: string;
   alert_addressed_datetime: string;
 };
+
+type ActionResponse<T = null> = {
+  success: boolean;
+  data?: T;
+  error?: {
+    message: string;
+    details: Record<string, string[]>;
+  };
+  status: number;
+};
+
+type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
+type ErrorResponse<T = null> = ActionResponse<undefined> & { success: false };
+
+type APIErrorResponse = NextResponse<ErrorResponse>;
+type APIResponse = NextResponse<SuccessResponse<T> | ErrorResponse>;

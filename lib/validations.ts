@@ -65,30 +65,57 @@ export const ProductSchema = z.object({
     .min(6, 'Product should be at least 6 characters long.')
     .max(30, 'Product must not exceed 30 characters.'),
   image: z.string().nonempty('Product image is required.'),
-  // image: z.object({
-  //   image: z
-  //     .any()
-  //     .refine((file) => file?.length == 1, 'Image is required.')
-  //     .refine((file) => file[0]?.size <= 3000000, 'Max file size is 3MB.'),
-  // }),
   weight_unit: z.enum(['lbs', 'kg']).default('lbs'),
 });
 
-export const AddScaleSchema = z.object({
-  uuid: z
-    .string()
-    .min(6, 'UUID should be at least 6 characters long.')
-    .max(20, 'UUID must not exceed 20 characters.'),
-  oem_name: z
-    .string()
-    .min(6, 'OEM should be at least 6 characters long.')
-    .max(20, 'Name must not exceed 20 characters.'),
-  model_name: z
-    .string()
-    .min(6, 'Model should be at least 6 characters long.')
-    .max(20, 'Name must not exceed 20 characters.'),
-  allocation_weight: z.number().int().positive(),
-  threshold_weight: z.number().int().positive(),
-  location: z.object({ LocationSchema }),
-  product: z.object({ ProductSchema }),
-});
+export const AddScaleSchema = z
+  .object({
+    uuid: z
+      .string()
+      .min(6, 'UUID should be at least 6 characters long.')
+      .max(20, 'UUID must not exceed 20 characters.'),
+    oem_name: z
+      .string()
+      .min(6, 'OEM should be at least 6 characters long.')
+      .max(20, 'Name must not exceed 20 characters.'),
+    model_name: z
+      .string()
+      .min(6, 'Model should be at least 6 characters long.')
+      .max(20, 'Name must not exceed 20 characters.'),
+    allocation_weight: z.number().int().positive().default(0),
+    threshold_weight: z.number().int().positive().default(0),
+    location: z.object({ LocationSchema }).optional(),
+    product: z.object({ ProductSchema }).optional(),
+  })
+  .refine(
+    ({ allocation_weight, product }) => {
+      if (product) return allocation_weight !== undefined;
+      return true;
+    },
+    () => ({
+      path: ['allocation_weight'],
+      message:
+        '"Allocation weight" is required when adding a product to the scale.',
+    })
+  )
+  .refine(
+    ({ threshold_weight, product }) => {
+      if (product) return threshold_weight !== undefined;
+      return true;
+    },
+    () => ({
+      path: ['threshold_weight'],
+      message:
+        '"Threshold weight" is required when adding a product to the scale.',
+    })
+  )
+  .refine(
+    ({ location, product }) => {
+      if (product) return location !== undefined;
+      return true;
+    },
+    () => ({
+      path: ['location'],
+      message: '"Location" is required when adding a product to the scale.',
+    })
+  );

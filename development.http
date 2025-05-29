@@ -1,0 +1,173 @@
+@url=http://98.70.27.104:9725
+@token=xkvl9zJNVxiRGJLJYCFTGSqzETaOxFC54lLD8THXjcJQZddNHo7Flg==
+
+# Getting token
+POST {{url}}/register
+Content-Type: application/json
+
+{
+    "device_name": "Hello World",
+    "device_uid": "asbcw-1s4"
+}
+
+### Get token wihtout device registraion
+POST {{url}}/get-token
+Content-Type: application/json
+
+{
+    "device_uid": "admin-123"
+}
+
+### All Devices
+GET {{url}}/devices
+x-token: {{token}}
+
+
+### All Scales
+GET {{url}}/scales
+x-token: {{token}}
+
+### All Scales only scale data
+GET {{url}}/scales/compact
+x-token: {{token}}
+
+### Creating scale
+POST {{url}}/scales
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "ss_uid": "demo-7",
+    "oem_name": "Demo7",
+    "model_name": "May26"
+}
+
+### Get a Scale
+GET {{url}}/scales/2
+x-token: {{token}}
+
+### Delete a Scale
+DELETE  {{url}}/scales/6
+x-token: {{token}}
+
+
+### Assign product
+
+PATCH {{url}}/scales/4
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "product": 2,
+    "weight_unit": "lbs",
+    "threshold_weight": 20,
+    "allocation_weight": 120
+}
+
+### Delete Scale
+DELETE {{url}}/scales/9
+x-token: {{token}}
+
+### Add Location
+PUT {{url}}/scales/4/location
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "location_name": "third row",
+    "fixture_no": 124,
+    "row": 3
+}
+
+### Delete Location - NOT IMPLEMENTED
+DELETE  {{url}}/scales/4/location
+x-token: {{token}}
+
+
+### Update weight scale 2
+PUT {{url}}/scales/2/weight
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "weight_reading": 620,
+    "reading_datetime": "2025-05-21 10:20:01"
+}
+
+### Update weight scale 3
+PUT {{url}}/scales/3/weight
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "weight_reading": 180,
+    "reading_datetime": "2025-05-22 17:35:01"
+}
+
+### Getting Individual scale
+GET {{url}}/scales/2/readings
+x-token: {{token}}
+
+
+### Find notification for ss
+GET {{url}}/scales/2/notifications
+x-token: {{token}}
+
+### Get notifications
+GET {{url}}/scales/notifications
+x-token: {{token}}
+
+
+### Find notification
+GET {{url}}/scales/notifications/2
+x-token: {{token}}
+
+
+### Delete notification
+DELETE {{url}}/scales/notifications/2
+x-token: {{token}}
+
+### Acknowledge notification
+PUT {{url}}/scales/notifications/4/ack
+x-token: {{token}}
+
+
+### Getting all products
+GET {{url}}/products
+x-token: {{token}}
+
+### Getting single product
+GET {{url}}/products/6
+x-token: {{token}}
+
+### Adding Products
+POST {{url}}/products
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "product_name": "Lemon - Large",
+    "product_plu": 4053,
+    "weight_unit": "lbs",
+    "image": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PgoNPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCA0Ny41IDQ3LjUiIGlkPSJzdmcyIiB2ZXJzaW9uPSIxLjEiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoNPGRlZnMgaWQ9ImRlZnM2Ij4KDTxjbGlwUGF0aCBjbGlwUGF0aFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImNsaXBQYXRoMTYiPgoNPHBhdGggZD0iTSAwLDM4IDM4LDM4IDM4LDAgMCwwIDAsMzggWiIgaWQ9InBhdGgxOCIvPgoNPC9jbGlwUGF0aD4KDTwvZGVmcz4KDTxnIGlkPSJnMTAiIHRyYW5zZm9ybT0ibWF0cml4KDEuMjUsMCwwLC0xLjI1LDAsNDcuNSkiPgoNPGcgaWQ9ImcxMiI+Cg08ZyBjbGlwLXBhdGg9InVybCgjY2xpcFBhdGgxNikiIGlkPSJnMTQiPgoNPGcgaWQ9ImcyMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIuNDA1MywzMy42NjExKSI+Cg08cGF0aCBkPSJNIDAsMCBDIDYuNDgsMS4yNzUgOC40NTMsLTEuMjY1IDExLjY1NSwtMC4wODQgMTQuODU3LDEuMDk3IDExLjc0OCwtMi45MDQgMTAuOTEsLTMuNTkyIDEwLjA3LC00LjI4MSAyLjc3LC04LjQwMSAtMC4zOTYsLTYuODkgLTMuNTYzLC01LjM3OSAtMy41OCwtMC43MDUgMCwwIiBpZD0icGF0aDIyIiBzdHlsZT0iZmlsbDojNWM5MTNiO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIi8+Cg08L2c+Cg08ZyBpZD0iZzI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNi4wMDEsMjEpIj4KDTxwYXRoIGQ9Im0gMCwwIGMgLTAuMzA0LDAgLTAuNjA0LDAuMTM4IC0wLjgwMSwwLjQgLTAuNjg3LDAuOTE2IC0xLjMwOCwxLjk1NSAtMS45NjUsMy4wNTYgLTIuMjY4LDMuNzk1IC00LjgzOSw4LjA5OCAtMTEuNDUyLDkuNTY4IC0wLjUzOSwwLjEyIC0wLjg3OSwwLjY1NCAtMC43NTksMS4xOTMgMC4xMiwwLjUzOSAwLjY1NCwwLjg3OCAxLjE5MywwLjc1OSBDIC02LjMzLDEzLjMyIC0zLjQwMiw4LjQxOSAtMS4wNDksNC40ODEgLTAuNDE5LDMuNDI3IDAuMTc1LDIuNDMyIDAuNzk5LDEuNiAxLjEzLDEuMTU4IDEuMDQxLDAuNTMxIDAuNTk5LDAuMiAwLjQxOSwwLjA2NSAwLjIwOCwwIDAsMCIgaWQ9InBhdGgyNiIgc3R5bGU9ImZpbGw6Izc3YjI1NTtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIvPgoNPC9nPgoNPGcgaWQ9ImcyOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzUuMjk5OCw1LjQ2NTgpIj4KDTxwYXRoIGQ9Im0gMCwwIGMgMC4wMDIsMC4wMTcgLTAuMDAzLDAuMDI4IC0wLjAwMywwLjA0MyAyLjc3NCw1LjMzNSAyLjY0OCwxNS4xMTMgLTMuMzQ2LDIxLjEwNyAtNS44LDUuOCAtMTMuNjc5LDUuODIxIC0xOC43NjcsNC4wNjcgLTEuNTc4LC0wLjYxNCAtMi45MTYsLTAuMDY2IC0zLjgxNSwtMC45NjUgLTAuODgxLC0wLjg4MSAtMC4zNTEsLTIuNzE5IC0wLjcxNCwtMy44MTkgLTMuMTY5LC01LjIwMiAtMy40MDUsLTEzLjAyNSAyLjY4NywtMTkuMTE3IDQuOTYyLC00Ljk2MiAxMC40MzgsLTYuODQxIDE5Ljk4LC00Ljg1MiAwLjAwMiwwLjAwMiAwLjAwNSwxMGUtNCAwLjAwOCwwLjAwMiAxLjE0OSwwLjIxOCAyLjk1LC0wLjUyNCAzLjU2NywwLjA5NCBDIDAuNjgzLC0yLjM1NSAtMC4wOTQsLTEuMDgzIDAsMCIgaWQ9InBhdGgzMCIgc3R5bGU9ImZpbGw6I2ZmY2M0ZDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIvPgoNPC9nPgoNPGcgaWQ9ImczMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOS4yMDgsMzAuNDE3NSkiPgoNPHBhdGggZD0ibSAwLDAgYyAwLDAgLTQuMjcsMC41OSAtNi44NTcsLTQuNTk5IC0yLjU4OCwtNS4xODggMC41ODIsLTkuMTI0IDAuMjg5LC0xMi42NTIgLTAuMjkzLC0zLjUzMSAxLjU2NiwtMS4yNjUgMi42MjEsMC40NDUgMS4wNTUsMS43MSA0LjIzLDQuODk0IDQuOTM4LDkuMjY5IEMgMS42OTksLTMuMTYzIDAuOTIyLC0xLjA4MSAwLDAiIGlkPSJwYXRoMzQiIHN0eWxlPSJmaWxsOiM3N2IyNTU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiLz4KDTwvZz4KDTwvZz4KDTwvZz4KDTwvZz4KDTwvc3ZnPg=="
+}
+
+### Update Product
+PATCH {{url}}/products/9
+Content-Type: application/json
+x-token: {{token}}
+
+{
+    "product_name": "Banana",
+    "weight_unit": "lbs"
+}
+
+
+### Deleting Product
+DELETE {{url}}/products/3
+x-token: {{token}}
+
+
+### Deleting Product
+POST {{url}}/logout
+x-token: {{token}}
