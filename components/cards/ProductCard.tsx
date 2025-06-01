@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import ROUTES from '@/constants/routes';
 import { Product } from '@/types/global';
-
 import Link from 'next/link';
-
 import React from 'react';
 
 interface ProductCardProps {

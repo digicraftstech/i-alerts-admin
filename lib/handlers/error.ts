@@ -3,10 +3,10 @@ import { ZodError } from 'zod';
 import { RequestError, ValidationError } from '../http-errors';
 import logger from '../logger';
 
-export type ResponseType = 'api' | 'server';
+export type ErrorType = 'api' | 'server';
 
 const formatResponse = (
-  responseType: ResponseType,
+  errorType: ErrorType,
   status: number,
   message: string,
   errors?: Record<string, string[]> | undefined
@@ -19,23 +19,35 @@ const formatResponse = (
     },
   };
 
-  return responseType === 'api'
+  // console.log('formatResponse- responseContent ', responseContent);
+
+  return { status, ...responseContent };
+
+  return errorType === 'api'
     ? NextResponse.json(responseContent, { status })
     : { status, ...responseContent };
 };
 
-const handleError = (error: unknown, responseType: ResponseType = 'server') => {
+const handleError = (error: unknown, errorType: ErrorType = 'server') => {
   if (error instanceof RequestError) {
-    logger.error(
-      { err: error },
-      `${responseType.toUpperCase()} Error: ${error.message}`
+    // logger.error(
+    //   { err: error },
+    //   `${errorType.toUpperCase()} Error: ${error.message}`
+    // );
+    console.log(
+      ` - returning: errorType: ${errorType} status: ${error.statusCode} message: ${error.message} details: ${error.errors}`
     );
-    return formatResponse(
-      responseType,
+
+    const res = formatResponse(
+      errorType,
       error.statusCode,
       error.message,
       error.errors
     );
+
+    // console.log('handleError returns: ', res);
+
+    return res;
   }
 
   if (error instanceof ZodError) {
@@ -49,7 +61,7 @@ const handleError = (error: unknown, responseType: ResponseType = 'server') => {
     );
 
     return formatResponse(
-      responseType,
+      errorType,
       validationError.statusCode,
       validationError.message,
       validationError.errors
@@ -58,11 +70,11 @@ const handleError = (error: unknown, responseType: ResponseType = 'server') => {
 
   if (error instanceof Error) {
     logger.error(error.message);
-    return formatResponse(responseType, 500, error.message);
+    return formatResponse(errorType, 500, error.message);
   }
 
   logger.error({ err: error }, 'An unexpected error occurred.');
-  return formatResponse(responseType, 500, 'An Unexpected error occurred.');
+  return formatResponse(errorType, 500, 'An Unexpected error occurred.');
 };
 
 export default handleError;

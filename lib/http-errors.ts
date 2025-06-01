@@ -38,6 +38,13 @@ export class ValidationError extends RequestError {
   }
 }
 
+export class DuplicateError extends RequestError {
+  constructor(resource: string) {
+    super(403, `${resource} already exists.`);
+    this.name = 'DuplicateError';
+  }
+}
+
 export class NotFoundError extends RequestError {
   constructor(resource: string) {
     super(404, `${resource} not found.}`);

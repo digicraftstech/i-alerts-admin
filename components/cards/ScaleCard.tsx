@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import Metric from '../Metric';
 import { getConvertedWeightString } from '@/lib/conversions';
+import { Scale } from '@/types/global';
 
 interface ScaleCardProps {
   scale: Scale;
@@ -18,16 +19,21 @@ const ScaleCard = ({
     last_reading_datetime,
     threshold_weight,
     allocation_weight,
+    location,
     product,
     alert,
   },
 }: ScaleCardProps) => {
   let status = 'regular';
-  if (alert) {
-    if (alert.alert_addressed_datetime) status = 'addressed';
-    else if (alert.alert_ack_datetime) status = 'acknowledged';
-    else if (alert.alert_raised_datetime) status = 'alerted';
-    else status = 'regular';
+  if (location) {
+    if (alert) {
+      if (alert.alert_addressed_datetime) status = 'addressed';
+      else if (alert.alert_ack_datetime) status = 'acknowledged';
+      else if (alert.alert_raised_datetime) status = 'alerted';
+      else status = 'regular';
+    }
+  } else {
+    status = 'unlocated';
   }
   const bgColor = `card-background-${status}`;
   // console.log('bgColor: ', bgColor);

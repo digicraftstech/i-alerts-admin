@@ -1,24 +1,24 @@
 'use server';
 
-import { CreateProductParams } from '@/types/action';
+import { CreateScaleParams } from '@/types/action';
 import {
   ActionResponse,
   ErrorResponse,
   ItemArrayResponse,
-  Product,
+  Scale,
 } from '@/types/global';
 import action from '../handlers/actions';
-import { ProductSchema } from '../validations';
 import handleError from '../handlers/error';
 import { api } from '../api';
 import { RequestError } from '../http-errors';
+import { AddScaleSchema } from '../validations';
 
-export async function createProduct(
-  params: CreateProductParams
-): Promise<ActionResponse<Product> | ErrorResponse> {
+export async function createScale(
+  params: CreateScaleParams
+): Promise<ActionResponse<Scale> | ErrorResponse> {
   const validationResult = await action({
     params,
-    schema: ProductSchema,
+    schema: AddScaleSchema,
     authorize: true,
   });
 
@@ -27,22 +27,22 @@ export async function createProduct(
   }
 
   try {
-    const response = (await api.products.create(
+    const response = (await api.scales.create(
       validationResult.params!
-    )) as ActionResponse<Product>;
+    )) as ActionResponse<Scale>;
 
-    //Create product returns a single product in in response
+    //Create scale returns a single scale in response
     // console.log('Return from create: - response: ', response);
 
     if (response.success) {
-      // console.log('Product added returning data: ', JSON.stringify(response));
+      // console.log('Scale added returning data: ', JSON.stringify(response));
       return {
         success: true,
         data: JSON.parse(JSON.stringify(response)),
         status: 200,
       };
     } else {
-      // console.log('createProduct: returned error response: ', response.error);
+      // console.log('createScale: returned error response: ', response.error);
 
       const error = response.error;
       throw new RequestError(
@@ -58,29 +58,29 @@ export async function createProduct(
       // };
     }
   } catch (error) {
-    // console.log('Caught error in createProduct: ', error);
+    // console.log('Caught error in createScale: ', error);
     return handleError(error, 'api') as ErrorResponse;
   }
 }
 
-export async function getAllProducts(): Promise<
-  ActionResponse<Product> | ErrorResponse
+export async function getAllScales(): Promise<
+  ActionResponse<Scale> | ErrorResponse
 > {
   try {
-    const response = (await api.products.getAll()) as ActionResponse<Product>;
+    const response = (await api.scales.getAll()) as ActionResponse<Scale>;
 
-    //Create product returns a single product in in response
+    //Create scale returns a single scale in in response
     // console.log('Return from getAll: - response: ', response.data);
 
     if (response.success) {
       const responseData = JSON.parse(JSON.stringify(response.data));
       return {
         success: true,
-        data: responseData as ItemArrayResponse<Product>,
+        data: responseData as ItemArrayResponse<Scale>,
         status: 200,
       };
     } else {
-      // console.log('createProduct: returned error response: ', response.error);
+      // console.log('createScale: returned error response: ', response.error);
 
       const error = response.error;
       throw new RequestError(
@@ -96,7 +96,7 @@ export async function getAllProducts(): Promise<
       // };
     }
   } catch (error) {
-    // console.log('Caught error in createProduct: ', error);
+    // console.log('Caught error in createScale: ', error);
     return handleError(error, 'api') as ErrorResponse;
   }
 }

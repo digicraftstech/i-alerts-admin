@@ -40,9 +40,9 @@ type Alert = {
   alert_addressed_datetime: string;
 };
 
-type ActionResponse<T = null> = {
+type ActionResponse<T> = {
   success: boolean;
-  data?: T;
+  data?: ItemResponse<T> | ItemArrayResponse<T>;
   error?: {
     message: string;
     details: Record<string, string[]>;
@@ -51,7 +51,25 @@ type ActionResponse<T = null> = {
 };
 
 type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
-type ErrorResponse<T = null> = ActionResponse<undefined> & { success: false };
+type ErrorResponse = ActionResponse<null> & { success: false };
+
+type ItemResponse<T> = T;
+type ItemArrayResponse<T> = {
+  data: T[];
+  total: number;
+  page: number;
+  pages: number;
+  limit: number;
+};
 
 type APIErrorResponse = NextResponse<ErrorResponse>;
 type APIResponse = NextResponse<SuccessResponse<T> | ErrorResponse>;
+
+interface FetchOptions extends RequestInit {
+  timeout?: number;
+}
+
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}

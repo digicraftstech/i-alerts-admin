@@ -1,7 +1,7 @@
 import { fetchHandler } from './handlers/fetch';
-import ROUTES from '@/constants/routes';
-import { API_ACCOUNTS_URL, API_BASE_URL, API_USERS_URL } from '@/constants';
+import { API_BASE_URL, API_PRODUCTS_URL, API_SCALES_URL } from '@/constants';
 import { RegisterDeviceParams } from '@/types';
+import { IProduct, IScale } from '@/app/interfaces';
 
 // A sample fetch
 // fetchHandler(`${API_BASE_URL}/accounts/${id}`, {
@@ -11,52 +11,62 @@ import { RegisterDeviceParams } from '@/types';
 
 export const api = {
   auth: {
-    signIn: ({ device_id, device_name }: RegisterDeviceParams) =>
-      fetchHandler(`${API_BASE_URL}/auth/${ROUTES.SIGN_IN_WITH_OAUTH}`, {
+    register: ({ device_id, device_name }: RegisterDeviceParams) =>
+      fetchHandler(`${API_BASE_URL}/register`, {
         method: 'POST',
-        body: JSON.stringify({ user, provider, providerAccountId }),
+        body: JSON.stringify({ device_id, device_name }),
       }),
   },
-  users: {
-    getAll: () => fetchHandler(`${API_USERS_URL}`),
-    getById: (id: string) => fetchHandler(`${API_USERS_URL}/${id}`),
-    getByEmail: (email: string) =>
-      fetchHandler(`${API_USERS_URL}/email`, {
+  register: ({ device_id, device_name }: RegisterDeviceParams) =>
+    fetchHandler(`${API_BASE_URL}/register`, {
+      method: 'POST',
+      body: JSON.stringify({ device_id, device_name }),
+    }),
+  scales: {
+    getAll: () => fetchHandler(`${API_SCALES_URL}`),
+    getById: (id: string) => fetchHandler(`${API_SCALES_URL}/${id}`),
+    getByFixture: (fixture: string) =>
+      fetchHandler(`${API_PRODUCTS_URL}/fixture`, {
         method: 'POST',
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ fixture }),
       }),
-    create: (userData: Partial<IUser>) =>
-      fetchHandler(`${API_USERS_URL}`, {
+    create: (scaleData: Partial<IScale>) =>
+      fetchHandler(`${API_SCALES_URL}`, {
         method: 'POST',
-        body: JSON.stringify(userData),
+        body: JSON.stringify(scaleData),
       }),
-    update: (id: string, userData: Partial<IUser>) =>
-      fetchHandler(`${API_USERS_URL}/${id}`, {
+    update: (id: string, scaleData: Partial<IScale>) =>
+      fetchHandler(`${API_SCALES_URL}/${id}`, {
         method: 'PUT',
-        body: JSON.stringify(userData),
+        body: JSON.stringify(scaleData),
       }),
     delete: (id: string) =>
-      fetchHandler(`${API_USERS_URL}/${id}`, { method: 'DELETE' }),
+      fetchHandler(`${API_SCALES_URL}/${id}`, { method: 'DELETE' }),
   },
-  accounts: {
-    getAll: () => fetchHandler(`${API_ACCOUNTS_URL}`),
-    getById: (id: string) => fetchHandler(`${API_ACCOUNTS_URL}/${id}`),
-    getByProvider: (providerAccountId: string) =>
-      fetchHandler(`${API_ACCOUNTS_URL}/provider`, {
+  products: {
+    getAll: () => fetchHandler(`${API_PRODUCTS_URL}`),
+
+    getById: (id: string) => fetchHandler(`${API_PRODUCTS_URL}/${id}`),
+
+    getByPLU: (product_plu: number) =>
+      fetchHandler(`${API_PRODUCTS_URL}/plu`, {
         method: 'POST',
-        body: JSON.stringify({ providerAccountId }),
+        body: JSON.stringify({ product_plu }),
       }),
-    create: (accountData: Partial<IAccount>) =>
-      fetchHandler(`${API_ACCOUNTS_URL}`, {
+
+    create: (productData: Partial<IProduct>) =>
+      fetchHandler(`${API_PRODUCTS_URL}`, {
         method: 'POST',
-        body: JSON.stringify(accountData),
+        body: JSON.stringify(productData),
       }),
-    update: (id: string, accountData: Partial<IAccount>) =>
-      fetchHandler(`${API_ACCOUNTS_URL}/${id}`, {
+
+    update: (id: string, productData: Partial<IProduct>) =>
+      fetchHandler(`${API_PRODUCTS_URL}/${id}`, {
         method: 'PUT',
-        body: JSON.stringify(accountData),
+        body: JSON.stringify(productData),
       }),
+
     delete: (id: string) =>
-      fetchHandler(`${API_ACCOUNTS_URL}/${id}`, { method: 'DELETE' }),
+      fetchHandler(`${API_PRODUCTS_URL}/${id}`, { method: 'DELETE' }),
   },
 };

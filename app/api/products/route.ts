@@ -1,4 +1,3 @@
-import { IProduct } from '@/app/interfaces';
 import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import handleError from '@/lib/handlers/error';
 import { ValidationError } from '@/lib/http-errors';
@@ -50,7 +49,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({ product_name, product_plu, image, weight_unit }),
     });
 
-    return NextResponse.json({ success: true, data: {} }, { status: 201 });
+    return NextResponse.json({ success: true, data: { res } }, { status: 201 });
   } catch (error) {
     handleError(error, 'api') as APIErrorResponse;
   }

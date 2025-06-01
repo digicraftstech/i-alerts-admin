@@ -1,9 +1,9 @@
 'use client';
 import { AddScaleSchema } from '@/lib/validations';
-import { LocationSchema } from '@/lib/validations';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
-import { Path, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
@@ -14,26 +14,40 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
-import { toTitleCase } from '@/lib/utils';
+import { Button } from '../ui/button';
+import { createScale } from '@/lib/actions/scale.action';
+import ROUTES from '@/constants/routes';
+import { redirect } from 'next/navigation';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const ScaleForm = () => {
   const form = useForm({
     resolver: zodResolver(AddScaleSchema),
     defaultValues: {
-      uuid: '',
+      ss_uid: '',
       oem_name: '',
       model_name: '',
-      threshold_weight: 0,
-      allocation_weight: 0,
-      location: {
-        fixture: '',
-        row: '',
-        location_name: '',
-      },
+      // threshold_weight: 0,
+      // allocation_weight: 0,
+      // location: {
+      //   fixture: '',
+      //   row: '',
+      //   location_name: '',
+      // },
     },
   });
 
-  const handleAddScale = () => {};
+  const handleAddScale = async (data: z.infer<typeof AddScaleSchema>) => {
+    const result = await createScale(data);
+
+    if (result.success) {
+      toast.info('Scale added.');
+      redirect(ROUTES.HOME);
+    } else {
+      form.setError('root', { message: result.error?.message });
+    }
+  };
 
   return (
     <Form {...form}>
@@ -43,7 +57,7 @@ const ScaleForm = () => {
       >
         <FormField
           control={form.control}
-          name='uuid'
+          name='ss_uid'
           render={({ field }) => (
             <FormItem className='flex flex-col w-full'>
               <FormLabel className='paragraph-semibold text-dark400_light800'>
@@ -77,9 +91,7 @@ const ScaleForm = () => {
                     className='paragraph-regular backgroundg-light700-dark300 border light-border-2 text-dark300_light700 not-focus min-h-[36px]'
                   />
                 </FormControl>
-                {/* <FormDescription className='body-regular text-light-500'>
-                  Name of the manufcturer.
-                </FormDescription> */}
+
                 <FormMessage />
               </FormItem>
             )}
@@ -98,16 +110,14 @@ const ScaleForm = () => {
                     className='paragraph-regular backgroundg-light700-dark300 border light-border-2 text-dark300_light700 not-focus min-h-[36px]'
                   />
                 </FormControl>
-                {/* <FormDescription className='body-regular text-light-500'>
-                  Name of the Model.
-                </FormDescription> */}
+
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
 
-        <div className='flex w-full flex-row justify-between items-center gap-2'>
+        {/* <div className='flex w-full flex-row justify-between items-center gap-2'>
           <FormField
             control={form.control}
             name='threshold_weight'
@@ -171,6 +181,20 @@ const ScaleForm = () => {
               </FormItem>
             )}
           />
+        </div> */}
+        <div className='mt-5 flex flex-col items-center justify-center gap-3'>
+          <div className='text-destructive-foreground mt-2'>
+            {form.formState.errors?.root?.message && (
+              <FormMessage>{form.formState.errors?.root?.message}</FormMessage>
+            )}
+          </div>
+          <Button
+            type='submit'
+            className='primary-gradient !text-light-900 w-fit'
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting ? 'Saving...' : 'Save Scale'}
+          </Button>
         </div>
       </form>
     </Form>

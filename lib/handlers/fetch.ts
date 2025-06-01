@@ -1,19 +1,17 @@
-import { ActionResponse, FetchOptions } from '@/types/global';
+import { ActionResponse, APIErrorResponse, FetchOptions } from '@/types/global';
 import logger from '../logger';
-import { RequestError } from '../http-error';
 import handleError from './error';
+import { DuplicateError, RequestError } from '../http-errors';
+import { IALERTS_TOKEN } from '@/constants';
 
 function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
 
-export async function fetchHandler<T>(
-  url: string,
-  options: FetchOptions = {}
-): Promise<ActionResponse<T>> {
+export async function fetchHandler<T>(url: string, options: FetchOptions = {}) {
   const {
     timeout = 5000,
-    headers: customHeaders = {},
+    headers: customHeaders = { 'x-token': IALERTS_TOKEN },
     ...restOptions
   } = options;
 
@@ -39,21 +37,29 @@ export async function fetchHandler<T>(
   try {
     const response = await fetch(url, config);
 
+    const responseBody = await response.json();
+    // console.log('fetch - responseBody: ', responseBody);
+
     clearTimeout(id);
 
-    if (!response.ok)
-      throw new RequestError(response.status, `HTTP Error: ${response.status}`);
+    if (!response.ok) {
+      if (responseBody.status === 403) throw new DuplicateError('Resource');
+      throw new RequestError(response.status, `${responseBody.message}`);
+    }
 
-    return await response.json();
-  } catch (e) {
-    const error = isError(e) ? e : new Error('Unknown error');
-
+    return {
+      success: true,
+      data: responseBody,
+      status: response.status,
+    } as ActionResponse<T>;
+  } catch (err) {
+    const error = isError(err) ? err : new Error('Unknown error');
     if (error.name === 'AbortError') {
       logger.warn(`Request to ${url} timed out.`);
     } else {
       logger.error(`Error fetching ${url}: ${error.message}`);
     }
 
-    return handleError(error, 'api') as ActionResponse<T>;
+    return handleError(error, 'api') as APIErrorResponse;
   }
 }

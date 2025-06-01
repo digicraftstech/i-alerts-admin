@@ -1,6 +1,7 @@
 import ROUTES from '@/constants/routes';
 import { getConvertedWeightString } from '@/lib/conversions';
 import { getDateTimeString } from '@/lib/utils';
+import { Scale } from '@/types/global';
 import Link from 'next/link';
 
 import React from 'react';

@@ -4,20 +4,20 @@ export interface IAlert {
   alert_ack_datetime: string;
 }
 export interface IScale {
-  ss_id: number;
-  ss_uid: number;
-  ss_unique_name: string;
+  ss_uid: string;
   model_name: string;
   oem_name: string;
-  last_reading: number;
-  last_reading_datetime: Date;
-  threshold_weight: number;
-  allocation_weight: number;
-  weight_unit: 'kg' | 'lbs';
-  status: null | string;
-  product: null | IProduct;
-  location: null | ILocation;
-  alert: null | IAlert;
+  ss_id?: number;
+  ss_unique_name?: string;
+  last_reading?: number;
+  last_reading_datetime?: Date;
+  threshold_weight?: number;
+  allocation_weight?: number;
+  weight_unit?: 'kg' | 'lbs';
+  status?: null | string;
+  product?: null | IProduct;
+  location?: null | ILocation;
+  alert?: null | IAlert;
 }
 
 export interface IProduct {

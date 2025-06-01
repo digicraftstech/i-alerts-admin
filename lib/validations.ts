@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { number, z } from 'zod';
 
 export const SignInSchema = z.object({
   email: z
@@ -58,17 +58,37 @@ export const LocationSchema = z.object({
     .max(20, 'Location must not exceed 20 characters.'),
 });
 
-export const ProductSchema = z.object({
-  product_plu: z.string().nonempty('PLU code is required.'),
-  product_name: z
-    .string()
-    .min(6, 'Product should be at least 6 characters long.')
-    .max(30, 'Product must not exceed 30 characters.'),
-  image: z.string().nonempty('Product image is required.'),
-  weight_unit: z.enum(['lbs', 'kg']).default('lbs'),
+export const ProductSchema = z
+  .object({
+    product_name: z
+      .string()
+      .min(6, 'Product should be at least 6 characters long.')
+      .max(30, 'Product must not exceed 30 characters.'),
+    // product_plu: number().nonnegative('4 or 6 digit PLU code is required.'),
+    product_plu: number().int().nonnegative(),
+    image: z.string().nonempty('Product image is required.'),
+    weight_unit: z.enum(['lbs', 'kg']).default('lbs'),
+  })
+  .refine(
+    ({ product_plu }: { product_plu: number }) => {
+      return (
+        (product_plu >= 100000 && product_plu <= 999999) ||
+        (product_plu >= 1000 && product_plu <= 9999)
+      );
+    },
+    () => ({
+      path: ['product_plu'],
+      message: '"Product PLU should be a 4 digit or 6 digit numeral.',
+    })
+  );
+
+export const AddScaleSchema = z.object({
+  ss_uid: z.string().nonempty('Scale UID is required'),
+  oem_name: z.string().nonempty('Scale OEM is required.'),
+  model_name: z.string().nonempty('Product image is required.'),
 });
 
-export const AddScaleSchema = z
+export const ScaleSchema = z
   .object({
     uuid: z
       .string()

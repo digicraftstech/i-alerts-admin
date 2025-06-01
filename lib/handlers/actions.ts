@@ -1,8 +1,6 @@
 'use server';
 
 import { ZodError, ZodSchema } from 'zod';
-import { Session } from 'next-auth';
-import { auth } from '@/auth';
 import { ValidationError, UnauthorizedError } from '../http-errors';
 import { IALERTS_TOKEN } from '@/constants';
 

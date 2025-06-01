@@ -1,45 +1,34 @@
 import { auth } from '@/auth';
 import React from 'react';
-import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import ScaleCard from '@/components/cards/ScaleCard';
-import handleError from '@/lib/handlers/error';
-import { NotFoundError, ValidationError } from '@/lib/http-errors';
+
+import { ActionResponse, ItemArrayResponse, Scale } from '@/types/global';
+import { getAllScales } from '@/lib/actions/scale.action';
 
 const getScales = async () => {
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-  headers.append('x-token', IALERTS_TOKEN);
-
-  try {
-    const res = await fetch(`${API_BASE_URL}/scales`, {
-      method: 'GET',
-      headers: headers,
-    });
-    const scales = await res.json();
-
-    return scales.data;
-  } catch (error) {
-    console.log('Error while fetching data: ', error);
-    return [];
-  }
+  const result = (await getAllScales()) as ActionResponse<Scale>;
+  const data = result.data as ItemArrayResponse<Scale>;
+  // console.log('scales- dataArray: ', data.data);
+  return data.data as Scale[];
 };
 
-const testError = async () => {
-  try {
-    // throw new Error('Test Error');
-    // throw new NotFoundError('Home');
-    throw new ValidationError({
-      title: ['Required'],
-      tags: ['"Javascript" is not a valid tag.'],
-    });
-  } catch (error) {
-    return handleError(error);
-  }
-};
+// const testError = async () => {
+//   try {
+//     return await api.scales.getAll();
+//     // throw new Error('Test Error');
+//     // throw new NotFoundError('Home');
+//     // throw new ValidationError({
+//     //   title: ['Required'],
+//     //   tags: ['"Javascript" is not a valid tag.'],
+//     // });
+//   } catch (error) {
+//     return handleError(error);
+//   }
+// };
 
 const Home = async () => {
   // const result = await testError();
-  // console.log(result);
+  // console.log('testError- Result: ', result);
 
   const session = await auth();
   const scales = await getScales();
