@@ -1,5 +1,5 @@
 @url=http://98.70.27.104:9725
-@token=r79WVw6JEs81oTQiNgSb7cXUIwrwq/zXlUPtX08h16Jkc26t6kOUpw==
+@token=D3YDUGNIgPta/EbPJHWA/tqgRzjKXEZH03Oy9Gw9A5nH3o9M87GgoA==
 
 # Getting token
 POST {{url}}/register

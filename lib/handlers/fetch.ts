@@ -1,7 +1,11 @@
 import { ActionResponse, APIErrorResponse, FetchOptions } from '@/types/global';
 import logger from '../logger';
 import handleError from './error';
-import { DuplicateError, RequestError } from '../http-errors';
+import {
+  DuplicateError,
+  RequestError,
+  UnauthorizedError,
+} from '../http-errors';
 import { IALERTS_TOKEN } from '@/constants';
 
 function isError(error: unknown): error is Error {
@@ -44,6 +48,9 @@ export async function fetchHandler<T>(url: string, options: FetchOptions = {}) {
 
     if (!response.ok) {
       if (responseBody.status === 403) throw new DuplicateError('Resource');
+
+      if (responseBody.status === 401) throw new UnauthorizedError();
+
       throw new RequestError(response.status, `${responseBody.message}`);
     }
 

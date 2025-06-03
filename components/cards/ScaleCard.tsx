@@ -48,42 +48,65 @@ const ScaleCard = ({
             <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
               {ss_unique_name}
             </span>
-            <h3 className='base-semibold'>{`${product?.product_plu || '-'} ${
-              product?.product_name || '-'
-            }`}</h3>
+            <h3 className='base-semibold'>
+              {location
+                ? product
+                  ? `${product?.product_plu || '-'} ${
+                      product?.product_name || '-'
+                    }`
+                  : 'Product not assigned.'
+                : 'Location not assigned'}
+              {/* {product
+                ? `${product?.product_plu || '-'} ${
+                    product?.product_name || '-'
+                  }`
+                : 'Product not assigned.'} */}
+            </h3>
           </div>
         </div>
+
         <div className='mt-2'>
           <div className='mt-1 small-medium'>
             Last Reading{': '}
-            <span className='body-bold'>{`${getConvertedWeightString(
-              last_reading,
-              'oz-lboz'
-            )}`}</span>
+            {last_reading ? (
+              <span className='body-bold'>{`${getConvertedWeightString(
+                last_reading,
+                'oz-lboz'
+              )}`}</span>
+            ) : (
+              '-'
+            )}
             {/* {`Last Reading: ${last_reading} ${product.weight_unit}`} */}
           </div>
           <div className='mt-1 small-medium'>
-            {`Updated At: ${getDateTimeString(
-              new Date(last_reading_datetime)
-            )}`}
+            Updated At{': '}
+            {last_reading_datetime ? (
+              <span>
+                {`${getDateTimeString(new Date(last_reading_datetime))}`}
+              </span>
+            ) : (
+              '-'
+            )}
           </div>
         </div>
-        <div className='mt-3.5'>
-          <div className='mt-1 '>
-            <Metric
-              value={getConvertedWeightString(allocation_weight, 'oz-lboz')}
-              title='Allocation Weight: '
-              textStyles='small-medium text-dark400_light800'
-            />
+        {product && (
+          <div className='mt-3.5'>
+            <div className='mt-1 '>
+              <Metric
+                value={getConvertedWeightString(allocation_weight, 'oz-lboz')}
+                title='Allocation Weight: '
+                textStyles='small-medium text-dark400_light800'
+              />
+            </div>
+            <div className='mt-1 '>
+              <Metric
+                value={getConvertedWeightString(threshold_weight, 'oz-lboz')}
+                title='Threshold Weight: '
+                textStyles='small-medium text-dark400_light800'
+              />
+            </div>
           </div>
-          <div className='mt-1 '>
-            <Metric
-              value={getConvertedWeightString(threshold_weight, 'oz-lboz')}
-              title='Threshold Weight: '
-              textStyles='small-medium text-dark400_light800'
-            />
-          </div>
-        </div>
+        )}
       </Link>
     </div>
   );
