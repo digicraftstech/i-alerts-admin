@@ -43,8 +43,8 @@ const ScaleCardCompact = ({
             {ss_unique_name}
           </span>
           <h3 className='base-semibold'>
-            {placement.product
-              ? `${placement.product.product_plu} ${placement.product.product_name}`
+            {placement?.product
+              ? `${placement?.product.product_plu} ${placement?.product.product_name}`
               : 'Product not assigned'}
           </h3>
         </div>

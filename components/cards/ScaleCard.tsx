@@ -51,9 +51,9 @@ const ScaleCard = ({
             </span>
             <h3 className='base-semibold'>
               {location
-                ? placement.product
-                  ? `${placement.product?.product_plu || '-'} ${
-                      placement.product?.product_name || '-'
+                ? placement?.product
+                  ? `${placement?.product.product_plu || '-'} ${
+                      placement?.product.product_name || '-'
                     }`
                   : 'Product not assigned.'
                 : 'Location not assigned'}
@@ -90,7 +90,7 @@ const ScaleCard = ({
             )}
           </div>
         </div>
-        {placement.product && (
+        {placement?.product && (
           <div className='mt-3.5'>
             <div className='mt-1 '>
               <Metric

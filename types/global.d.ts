@@ -9,9 +9,9 @@ type Scale = {
   allocation_weight: number;
   status: string;
   // product: Product;
-  placement: ProductPlacement;
-  location: ScaleLocation;
-  alert: Alert;
+  placement?: ProductPlacement;
+  location?: ScaleLocation;
+  alert?: Alert;
 };
 
 type ProductPlacement = {
