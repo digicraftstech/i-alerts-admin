@@ -1,8 +1,6 @@
-import ROUTES from '@/constants/routes';
 import { getConvertedWeightString } from '@/lib/conversions';
 import { getDateTimeString } from '@/lib/utils';
 import { Scale } from '@/types/global';
-import Link from 'next/link';
 
 import React from 'react';
 
@@ -12,12 +10,11 @@ interface ScaleCardProps {
 
 const ScaleCardCompact = ({
   scale: {
-    ss_id,
     ss_unique_name,
     last_reading,
     last_reading_datetime,
     alert,
-    product,
+    placement,
     location,
   },
 }: ScaleCardProps) => {
@@ -46,8 +43,8 @@ const ScaleCardCompact = ({
             {ss_unique_name}
           </span>
           <h3 className='base-semibold'>
-            {product
-              ? `${product.product_plu} ${product.product_name}`
+            {placement.product
+              ? `${placement.product.product_plu} ${placement.product.product_name}`
               : 'Product not assigned'}
           </h3>
         </div>

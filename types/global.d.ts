@@ -8,9 +8,14 @@ type Scale = {
   threshold_weight: number;
   allocation_weight: number;
   status: string;
-  product: Product;
+  // product: Product;
+  placement: ProductPlacement;
   location: ScaleLocation;
   alert: Alert;
+};
+
+type ProductPlacement = {
+  product: Product;
 };
 
 type Product = {

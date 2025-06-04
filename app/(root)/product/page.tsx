@@ -8,7 +8,7 @@ import { getAllProducts } from '@/lib/actions/product.action';
 const getProducts = async () => {
   const result = (await getAllProducts()) as ActionResponse<Product>;
   const data = result.data as ItemArrayResponse<Product>;
-  console.log('proucts- dataArray: ', data.data);
+  // console.log('proucts- dataArray: ', data.data);
   return data.data as Product[];
 };
 

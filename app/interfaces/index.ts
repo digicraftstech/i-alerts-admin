@@ -15,9 +15,15 @@ export interface IScale {
   allocation_weight?: number;
   weight_unit?: 'kg' | 'lbs';
   status?: null | string;
-  product?: null | IProduct;
+  placement?: IProductPlacement;
   location?: null | ILocation;
   alert?: null | IAlert;
+  // product?: null | IProduct;
+}
+
+export interface IProductPlacement {
+  product: IProduct;
+  scale: IScale;
 }
 
 export interface IProduct {
