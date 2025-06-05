@@ -1,5 +1,5 @@
 @url=http://98.70.27.104:9725
-@token=WOofGVmXMTOd+VD5aetklLeBGmNcAGawR+0/ijzGhk3BkiLUNZUSYg==
+@token=5xzmZPP1cBuRpSJA31ADtHVErAjMiU7foGL81na5zzSOI0KKLVLM0g==
 
 
 ### 1. Get token wihtout device registraion
@@ -46,7 +46,7 @@ x-token: {{token}}
 }
 
 ### Get a Scale
-GET {{url}}/scales/2
+GET {{url}}/scales/1
 x-token: {{token}}
 
 ### Delete a Scale
@@ -56,7 +56,7 @@ x-token: {{token}}
 
 ### Assign product NEW
 
-PUT {{url}}/scales/2/product
+PUT {{url}}/scales/1/product
 Content-Type: application/json
 x-token: {{token}}
 
@@ -79,7 +79,7 @@ x-token: {{token}}
 
 {
     "location_name": "LocB",
-    "fixture_no": 2,
+    "fixture_no": 4,
     "row": 1
 }
 
