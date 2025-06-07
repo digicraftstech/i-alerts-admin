@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { getExactTimeDifference } from '@/lib/utils';
+import { Reading } from '@/types/global';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown } from 'lucide-react';
 
