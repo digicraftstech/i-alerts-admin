@@ -1,4 +1,4 @@
-import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
+import { BaseURL, iAlertsToken } from '@/constants';
 import handleError from '@/lib/handlers/error';
 import { APIErrorResponse } from '@/types/global';
 import { NextResponse } from 'next/server';
@@ -6,10 +6,10 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  headers.append('x-token', IALERTS_TOKEN);
+  headers.append('x-token', iAlertsToken!);
 
   try {
-    const res = await fetch(`${API_BASE_URL}/scales`, {
+    const res = await fetch(`${BaseURL}/scales`, {
       method: 'GET',
       headers: headers,
     });

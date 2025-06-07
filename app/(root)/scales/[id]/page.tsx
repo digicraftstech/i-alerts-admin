@@ -1,16 +1,16 @@
-import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
 import React from 'react';
 import { DataTable } from './data-table';
 import { notificationColumns } from './columns';
 import ScaleCardCompact from '@/components/cards/ScaleCardCompact';
+import { BaseURL, iAlertsToken } from '@/constants';
 
 const getScale = async (id: string) => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  headers.append('x-token', IALERTS_TOKEN);
+  headers.append('x-token', iAlertsToken!);
 
   try {
-    const res = await fetch(`${API_BASE_URL}/scales/${id}`, {
+    const res = await fetch(`${BaseURL}/scales/${id}`, {
       method: 'GET',
       headers: headers,
     });
@@ -23,25 +23,6 @@ const getScale = async (id: string) => {
   }
 };
 
-// const getReadings = async (id: string) => {
-//   const headers = new Headers();
-//   headers.append('Content-Type', 'application/json');
-//   headers.append('x-token', IALERTS_TOKEN);
-
-//   try {
-//     const res = await fetch(`${API_BASE_URL}/scales/${id}/readings`, {
-//       method: 'GET',
-//       headers: headers,
-//     });
-//     const readings = await res.json();
-
-//     return readings.data;
-//   } catch (error) {
-//     console.log('Error while fetching data: ', error);
-//     return [];
-//   }
-// };
-
 interface ScaleParams {
   params: Promise<{ id: string }>;
 }
@@ -49,10 +30,10 @@ interface ScaleParams {
 const getNotifications = async (id: string) => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  headers.append('x-token', IALERTS_TOKEN);
+  headers.append('x-token', iAlertsToken!);
 
   try {
-    const res = await fetch(`${API_BASE_URL}/scales/${id}/notifications`, {
+    const res = await fetch(`${BaseURL}/scales/${id}/notifications`, {
       method: 'GET',
       headers: headers,
     });

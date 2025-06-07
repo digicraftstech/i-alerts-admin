@@ -6,7 +6,7 @@ import {
   RequestError,
   UnauthorizedError,
 } from '../http-errors';
-import { IALERTS_TOKEN } from '@/constants';
+import { iAlertsToken } from '@/constants';
 
 function isError(error: unknown): error is Error {
   return error instanceof Error;
@@ -15,7 +15,7 @@ function isError(error: unknown): error is Error {
 export async function fetchHandler<T>(url: string, options: FetchOptions = {}) {
   const {
     timeout = 5000,
-    headers: customHeaders = { 'x-token': IALERTS_TOKEN },
+    headers: customHeaders = { 'x-token': iAlertsToken! },
     ...restOptions
   } = options;
 
@@ -40,9 +40,9 @@ export async function fetchHandler<T>(url: string, options: FetchOptions = {}) {
 
   try {
     const response = await fetch(url, config);
+    // console.log('fetch - response: ', response);
 
     const responseBody = await response.json();
-    // console.log('fetch - responseBody: ', responseBody);
 
     clearTimeout(id);
 

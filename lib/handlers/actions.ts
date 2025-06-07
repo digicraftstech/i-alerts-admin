@@ -2,7 +2,7 @@
 
 import { ZodError, ZodSchema } from 'zod';
 import { ValidationError, UnauthorizedError } from '../http-errors';
-import { IALERTS_TOKEN } from '@/constants';
+import { iAlertsToken } from '@/constants';
 
 type ActionOptions<T> = {
   params: T;
@@ -36,7 +36,7 @@ async function action<T>({
 
   let session = null;
   if (authorize) {
-    session = IALERTS_TOKEN;
+    session = iAlertsToken;
     if (!session) return new UnauthorizedError('Unauthorized ...');
   }
 

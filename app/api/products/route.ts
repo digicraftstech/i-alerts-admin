@@ -1,4 +1,4 @@
-import { API_BASE_URL, IALERTS_TOKEN } from '@/constants';
+import { BaseURL, iAlertsToken } from '@/constants';
 import handleError from '@/lib/handlers/error';
 import { ValidationError } from '@/lib/http-errors';
 import { ProductSchema } from '@/lib/validations';
@@ -8,10 +8,10 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  headers.append('x-token', IALERTS_TOKEN);
+  headers.append('x-token', iAlertsToken!);
 
   try {
-    const res = await fetch(`${API_BASE_URL}/products`, {
+    const res = await fetch(`${BaseURL}/products`, {
       method: 'GET',
       headers: headers,
     });
@@ -31,7 +31,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  headers.append('x-token', IALERTS_TOKEN);
+  headers.append('x-token', iAlertsToken!);
 
   try {
     const body = await request.json();
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     const { image, product_name, product_plu, weight_unit } =
       validatedData.data;
 
-    const res = await fetch(`${API_BASE_URL}/products`, {
+    const res = await fetch(`${BaseURL}/products`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({ product_name, product_plu, image, weight_unit }),
