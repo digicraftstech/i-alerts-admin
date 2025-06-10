@@ -91,13 +91,13 @@ export const notificationColumns: ColumnDef<Notification>[] = [
     accessorKey: 'alert_addressed_datetime',
     header: 'Addressed At',
     cell: ({ row }) => {
-      const dateString = row.getValue('alert_addressed_datetime') as string;
-      const formattedDate = new Date(dateString).toLocaleTimeString();
-      return (
-        <div className='text-left font-medium'>
-          {formattedDate.toLocaleString()}
-        </div>
-      );
+      const rowVal = row.getValue('alert_addressed_datetime');
+      let value = '-';
+      if (rowVal) {
+        const dateString = row.getValue('alert_addressed_datetime') as string;
+        value = new Date(dateString).toLocaleTimeString();
+      }
+      return <div className='text-left font-medium'>{value}</div>;
     },
   },
   {

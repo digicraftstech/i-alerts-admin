@@ -23,20 +23,28 @@ const ScaleCard = ({
     // product,
     placement,
     alert,
+    status,
   },
 }: ScaleCardProps) => {
-  let status = 'regular';
-  if (location) {
-    if (alert) {
-      if (alert.alert_addressed_datetime) status = 'addressed';
-      else if (alert.alert_ack_datetime) status = 'acknowledged';
-      else if (alert.alert_raised_datetime) status = 'alerted';
-      else status = 'regular';
-    }
+  let scaleStatus = 'regular';
+  if (!location) {
+    scaleStatus = 'unlocated';
   } else {
-    status = 'unlocated';
+    scaleStatus = status;
   }
-  const bgColor = `card-background-${status}`;
+
+  // let status = 'regular';
+  // if (location) {
+  //   if (alert) {
+  //     if (alert.alert_addressed_datetime) status = 'addressed';
+  //     else if (alert.alert_ack_datetime) status = 'acknowledged';
+  //     else if (alert.alert_raised_datetime) status = 'alerted';
+  //     else status = 'regular';
+  //   }
+  // } else {
+  //   status = 'unlocated';
+  // }
+  const bgColor = `card-background-${scaleStatus}`;
   // console.log('bgColor: ', bgColor);
 
   return (
