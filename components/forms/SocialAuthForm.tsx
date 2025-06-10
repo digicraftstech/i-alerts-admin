@@ -8,7 +8,7 @@ import ROUTES from '@/constants/routes';
 
 const SocialAuthForm = () => {
   const handleSignIn = async (provider: 'google') => {
-    console.log('Signing in via: ', provider);
+    // console.log('Signing in via: ', provider);
     try {
       // throw new Error(`${provider} - sign in Not implemented`);
       await signIn(provider, {
