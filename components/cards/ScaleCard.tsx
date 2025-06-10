@@ -20,9 +20,9 @@ const ScaleCard = ({
     threshold_weight,
     allocation_weight,
     location,
+    // alert,
     // product,
     placement,
-    alert,
     status,
   },
 }: ScaleCardProps) => {
