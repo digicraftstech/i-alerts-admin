@@ -42,7 +42,7 @@ const Home = async () => {
   return (
     <div>
       <h5 className='text-primary-500'>{session?.user?.name} </h5>
-      <h1 className='h2-bold'>Dashboard</h1>
+      <h1 className='h1-bold text-dark100_light900'>Dashboard</h1>
       <div className='mt-10 flex w-full flex-row flex-wrap max-sm:flex-col gap-9'>
         {error && <h1>{error}</h1>}
         {scales && scales.length

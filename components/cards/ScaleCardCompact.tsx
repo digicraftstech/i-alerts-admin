@@ -1,6 +1,7 @@
 import { getConvertedWeightString } from '@/lib/conversions';
 import { getDateTimeString } from '@/lib/utils';
 import { Scale } from '@/types/global';
+import { MapPin } from 'lucide-react';
 
 import React from 'react';
 
@@ -13,24 +14,31 @@ const ScaleCardCompact = ({
     ss_unique_name,
     last_reading,
     last_reading_datetime,
-    alert,
+    // alert,
+    status,
     placement,
     location,
   },
 }: ScaleCardProps) => {
-  let status = 'regular';
-  if (location) {
-    if (alert) {
-      if (alert.alert_addressed_datetime) status = 'addressed';
-      else if (alert.alert_ack_datetime) status = 'acknowledged';
-      else if (alert.alert_raised_datetime) status = 'alerted';
-      else status = 'regular';
-    }
+  let scaleStatus = 'regular';
+  if (!location) {
+    scaleStatus = 'unlocated';
   } else {
-    status = 'unlocated';
+    scaleStatus = status;
   }
+  // let status = 'regular';
+  // if (location) {
+  //   if (alert) {
+  //     if (alert.alert_addressed_datetime) status = 'addressed';
+  //     else if (alert.alert_ack_datetime) status = 'acknowledged';
+  //     else if (alert.alert_raised_datetime) status = 'alerted';
+  //     else status = 'regular';
+  //   }
+  // } else {
+  //   status = 'unlocated';
+  // }
 
-  const bgColor = `card-background-${status}`;
+  const bgColor = `card-background-${scaleStatus}`;
 
   return (
     <div
@@ -75,9 +83,14 @@ const ScaleCardCompact = ({
         </div>
       </div>
 
-      <div className='mt-3.5'>
+      <div className='mt-3.5 flex flex-row items-center gap-2'>
+        <MapPin
+          name='location-on'
+          size={15}
+          // color={Colors.LOCATION_PIN}
+        />
         {location
-          ? `Location: ${location.location_name}, Fixture: ${location.fixture_no}, Row: ${location.row}`
+          ? `${location.location_name}, Fixture: ${location.fixture_no}, Row: ${location.row}`
           : 'Location not assigned'}
       </div>
       {/* </Link> */}

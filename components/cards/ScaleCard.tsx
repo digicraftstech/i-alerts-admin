@@ -48,10 +48,10 @@ const ScaleCard = ({
   // console.log('bgColor: ', bgColor);
 
   return (
-    <div
-      className={`card-wrapper rounded-[10px] min-w-[300px] min-h-[200px] p-9 sm:px-11 ${bgColor}`}
-    >
-      <Link href={ROUTES.SCALE(ss_id)}>
+    <Link href={ROUTES.SCALE(ss_id)}>
+      <div
+        className={`card-wrapper rounded-[10px] min-w-[300px] min-h-[200px] p-9 sm:px-11 ${bgColor}`}
+      >
         <div>
           <div>
             <span className='subtle-regular text-dark400_light700 line-clamp-1 flex '>
@@ -116,8 +116,8 @@ const ScaleCard = ({
             </div>
           </div>
         )}
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

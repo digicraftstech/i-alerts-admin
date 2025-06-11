@@ -16,6 +16,7 @@ const Catalog = async () => {
   const products = await getProducts();
   return (
     <div>
+      <h1 className='h1-bold text-dark100_light900'>Products</h1>
       <div className='mt-10 flex w-full flex-col gap-6'>
         {products && products.length ? (
           products.map((product: Product) => (

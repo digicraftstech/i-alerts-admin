@@ -17,13 +17,13 @@
   --color-dark-alerted: #b51016; /* Dark Red*/
   --color-dark-acknowledged: #35769c; /* Muted dark blue */
   --color-dark-regular: #2a824d; /* Dark green */
-  --color-dark-unlocated: #585875; /* Light gray */
+  --color-dark-unlocated: #696c70; /* Light gray */
   --color-dark-addressed: #2b2b38; /* Dark gray */
 
   --color-light-alerted: #faafb4; /* Light red/pink */
   --color-light-acknowledged: #a6ddf7; /* Light blue */
   --color-light-regular: #c4f5c9; /* Light green */
-  --color-light-unlocated: #ccd2d9; /* Light gray */
+  --color-light-unlocated: #dbdbdb; /* Light gray */
   --color-light-addressed: #b4b9bf; /* gray */
 
   --color-primary-100: var(--color-app-accent);

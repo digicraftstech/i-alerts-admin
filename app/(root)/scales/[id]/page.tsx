@@ -53,10 +53,15 @@ const ScaleDetails = async ({ params }: ScaleParams) => {
   const scale = await getScale(id);
   // console.log('scale: ', scale);
   return (
-    <div className='mt-10 flex w-full flex-col gap-6'>
-      {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}
-      <ScaleCardCompact scale={scale} />
-      <DataTable data={notifications} columns={notificationColumns} />
+    <div>
+      <h1 className='h1-bold text-dark100_light900'>
+        {scale.location.location_name}
+      </h1>
+      <div className='mt-10 flex w-full flex-col gap-6'>
+        {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}
+        <ScaleCardCompact scale={scale} />
+        <DataTable data={notifications} columns={notificationColumns} />
+      </div>
     </div>
   );
 };
