@@ -58,7 +58,7 @@ export function Base64Image({
             clearInput();
           }}
         >
-          <Trash2Icon className='w-4 h-4 text-white' />
+          <Trash2Icon className='w-4 h-4 ' />
         </Button>
       </div>
       <Image

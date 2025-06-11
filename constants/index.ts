@@ -5,7 +5,7 @@ export const iAlertsToken = process.env.IALERTS_TOKEN;
 
 export const APIScalesURL = `${BaseURL}/scales`;
 export const APIProductsURL = `${BaseURL}/products`;
-export const APIREgisterURL = `${BaseURL}/register`;
+export const APIRegisterURL = `${BaseURL}/register`;
 
 export const sideBarLinks = [
   {
@@ -14,24 +14,24 @@ export const sideBarLinks = [
     route: ROUTES.HOME,
   },
   {
+    imgURL: '/icons/add-scale.svg',
+    label: 'Add a Scale',
+    route: ROUTES.ADD_SCALE,
+  },
+  {
     imgURL: '/icons/catalog.svg',
     label: 'Product Catalog',
     route: ROUTES.CATALOG,
+  },
+  {
+    imgURL: '/icons/add-product.svg',
+    label: 'Add a Product',
+    route: ROUTES.ADD_PRODUCT,
   },
 
   {
     imgURL: '/icons/store.svg',
     label: 'Store Details',
     route: ROUTES.STORE,
-  },
-  {
-    imgURL: '/icons/add-scale.svg',
-    label: 'Add a Scale',
-    route: ROUTES.ADD_SCALE,
-  },
-  {
-    imgURL: '/icons/add-product.svg',
-    label: 'Add a Product',
-    route: ROUTES.ADD_PRODUCT,
   },
 ];

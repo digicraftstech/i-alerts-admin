@@ -49,12 +49,12 @@ const ScaleCard = ({
 
   return (
     <div
-      className={`card-wrapper rounded-[10px] min-w-[300px] p-9 sm:px-11 ${bgColor}`}
+      className={`card-wrapper rounded-[10px] min-w-[300px] min-h-[200px] p-9 sm:px-11 ${bgColor}`}
     >
       <Link href={ROUTES.SCALE(ss_id)}>
         <div>
           <div>
-            <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
+            <span className='subtle-regular text-dark400_light700 line-clamp-1 flex '>
               {ss_unique_name}
             </span>
             <h3 className='base-semibold'>

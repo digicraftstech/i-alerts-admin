@@ -156,7 +156,7 @@ const ProductForm = () => {
           />
         </div>
 
-        <div className='mt-5 flex flex-col items-center justify-center gap-3'>
+        <div className='mt-5 flex flex-col items-start justify-center gap-3'>
           <div className='text-destructive-foreground mt-2'>
             {form.formState.errors?.root?.message && (
               <FormMessage>{form.formState.errors?.root?.message}</FormMessage>

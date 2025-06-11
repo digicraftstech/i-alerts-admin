@@ -119,10 +119,11 @@ export const getExactTimeDifference = (toDate: Date, fromDate: Date) => {
   //   parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
 
   const parts = [];
-  if (days > 0) parts.push(`${days}`);
-  if (hours > 0) parts.push(`${hours}`);
-  if (minutes > 0) parts.push(`${minutes}`);
-  if (seconds > 0 || parts.length === 0) parts.push(`${seconds}`);
+  if (days >= 0) parts.push(`${String(days).padStart(2, '0')}  `);
+  if (hours >= 0) parts.push(`${String(hours).padStart(2, '0')}  `);
+  if (minutes >= 0) parts.push(`${String(minutes).padStart(2, '0')} `);
+  if (seconds >= 0 || parts.length === 0)
+    parts.push(`${String(seconds).padStart(2, '0')}  `);
 
   return parts.join(':').replace(/,([^,]*)$/, ' and$1');
 };

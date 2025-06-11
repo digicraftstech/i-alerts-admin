@@ -5,7 +5,8 @@ import MobileNavigation from './MobileNavigation';
 
 const Navbar = () => {
   return (
-    <nav className='flex-between w-full z-50 background-light800_dark200 p-6 fixed gap-5 shadow-light-300 dark:shadow-none sm:px-8'>
+    // <nav className='flex-between w-full z-50 background-light800_dark200 p-6 fixed gap-5 shadow-light-300 dark:shadow-none sm:px-8'>
+    <nav className='flex-between w-full z-50 bg-primary-background p-6 fixed gap-5 border-b-1 shadow-light-300 dark:shadow-none sm:px-8'>
       <Link href='/' className='flex items-center gap-3'>
         <Image
           src='/images/intelera-logo.png'
@@ -15,7 +16,7 @@ const Navbar = () => {
           className='rounded-sm'
         />
         <p className='h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden'>
-          iAlerts<span className='text-primary-100'> Insights</span>
+          iAlerts<span className='text-app-accent-light'> Insights</span>
         </p>
       </Link>
       {/* <p>Global Search</p> */}

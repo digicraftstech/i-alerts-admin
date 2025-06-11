@@ -10,6 +10,10 @@
   --font-inter: var(--font-inter);
   --font-space-grotesk: var(--font-space-grotesk);
 
+  --color-app-accent: #ff6600;
+  --color-app-accent-light: #e2995f;
+  --color-app-accent-foreground: #ffffff;
+
   --color-dark-alerted: #b51016; /* Dark Red*/
   --color-dark-acknowledged: #35769c; /* Muted dark blue */
   --color-dark-regular: #2a824d; /* Dark green */
@@ -19,11 +23,13 @@
   --color-light-alerted: #faafb4; /* Light red/pink */
   --color-light-acknowledged: #a6ddf7; /* Light blue */
   --color-light-regular: #c4f5c9; /* Light green */
-  --color-light-unlocated: #ebf2fa; /* Light gray */
+  --color-light-unlocated: #ccd2d9; /* Light gray */
   --color-light-addressed: #b4b9bf; /* gray */
 
+  --color-primary-100: var(--color-app-accent);
+
   /* --color-primary-100: #fff1e6; */
-  --color-primary-100: #2395ff;
+  /* --color-primary-100: #2395ff; */
   /* --color-primary-500: #1b8dd3; Blue 1 Random*/
   /* --color-primary-500: #235cfe; Blue 2 Gemini AI */
   --color-primary-500: #174cff; /* Blue Intelera */
@@ -48,6 +54,12 @@
   --radius-md: calc(var(--radius) - 4px);
 
   /* Default Code Below */
+
+  --color-primary-background: var(--primary-background);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-bar-background: var(--bar-background);
+  --color-card-background: var(--card-background);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -92,16 +104,22 @@
   /* Default Code Below */
   /* --radius: 0.625rem; */
 
+  --primary-background: #ffffff;
+  --primary-foreground: #1a222e;
+  --secondary-foreground: #686868;
+  --bar-background: #f4f4f4;
+  --card-background: #f4f4f4;
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
+  /* --popover-foreground: oklch(0.129 0.042 264.695); */
   --primary: oklch(0.208 0.042 265.755);
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
+  /* --secondary-foreground: oklch(0.208 0.042 265.755); */
   --muted: oklch(0.968 0.007 247.896);
   --muted-foreground: oklch(0.554 0.046 257.417);
   --accent: oklch(0.968 0.007 247.896);
@@ -128,6 +146,12 @@
 .dark {
   --color-placeholder-text: var(--color-light-500);
 
+  --primary-background: #1a222e;
+  --primary-foreground: #ffffff;
+  --secondary-foreground: #d3d3d3;
+  --bar-background: #252b33;
+  --card-background: #55575a;
+
   /* Default Code Below */
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
@@ -136,9 +160,9 @@
   --popover: oklch(0.208 0.042 265.755);
   --popover-foreground: oklch(0.984 0.003 247.858);
   --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
+  /* --primary-foreground: oklch(0.208 0.042 265.755); */
   --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
+  /* --secondary-foreground: oklch(0.984 0.003 247.858); */
   --muted: oklch(0.279 0.041 260.031);
   --muted-foreground: oklch(0.704 0.04 256.788);
   --accent: oklch(0.279 0.041 260.031);
@@ -162,6 +186,7 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* App Root Background */
 .background-light850_dark100 {
   @apply bg-light-850 dark:bg-dark-100;
 }
@@ -198,6 +223,7 @@
   @apply bg-light-800 dark:bg-dark-300;
 }
 
+/* Navbar and Sidebar */
 .background-light800_dark200 {
   @apply bg-light-800 dark:bg-dark-200;
 }
@@ -312,8 +338,9 @@
 /* .card-wrapper {
   @apply bg-light-900 dark:dark-gradient shadow-light-100 dark:shadow-dark-100;
 } */
+
 .card-wrapper {
-  @apply bg-light-900 dark:dark-gradient shadow-light-100 dark:shadow-dark-100;
+  @apply bg-light-900 dark:bg-dark-300 shadow-light-100 dark:shadow-dark-100;
 }
 
 .btn {
@@ -349,13 +376,9 @@
   }
 }
 
-/* .primary-gradient {
-  background: linear-gradient(
-    129deg,
-    rgb(255, 112, 0) 0%,
-    rgb(226, 153, 95) 100%
-  );
-} 
+.primary-gradient {
+  background: linear-gradient(129deg, rgb(255, 112, 0) 0%, #e2995f 100%);
+}
 
 .primary-text-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
@@ -363,7 +386,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-*/
 
 /* BLue 1 Random*/
 /* .primary-gradient {
@@ -390,7 +412,7 @@
 } */
 
 /* Blue IntelEra */
-.primary-gradient {
+/* .primary-gradient {
   background: linear-gradient(129deg, #2395ff 0%, #174cff 100%);
 }
 
@@ -399,14 +421,14 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 @utility light-border {
   @apply border-light-800 dark:border-dark-300;
 }
 
 @utility light-border-2 {
-  @apply border-light-700 dark:border-dark-400;
+  @apply border-light-200 dark:border-dark-400;
 }
 
 @utility placeholder {
@@ -445,19 +467,19 @@
 }
 
 @utility base-medium {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 25.2px;
 }
 
 @utility base-semibold {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 25.2px;
 }
 
 @utility base-bold {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 140%;
 }

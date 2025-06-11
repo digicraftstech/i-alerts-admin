@@ -4,7 +4,8 @@ import React, { ReactNode } from 'react';
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <main className='background-light850_dark100 relative'>
+    // <main className='background-light850_dark100 relative'>
+    <main className='bg-bar-background relative'>
       <Navbar />
       <div className='flex'>
         <LeftSideBar />
