@@ -10,7 +10,7 @@ const ProductCard = ({
   product: { product_name, product_plu, image },
 }: ProductCardProps) => {
   return (
-    <div className='card-wrapper card-background-unlocated rounded-[10px] py-6 px-6 sm:px-11'>
+    <div className='card-wrapper card-background-unassigned rounded-[10px] py-6 px-6 sm:px-11'>
       <div className='flex flex-col-reverse items-start justify-between gap-5 sm:flex-row'>
         <div className='flex flex-row gap-5'>
           <Image

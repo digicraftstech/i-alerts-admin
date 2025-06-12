@@ -27,10 +27,10 @@ const ScaleCard = ({
   },
 }: ScaleCardProps) => {
   let scaleStatus = 'regular';
-  if (!location) {
-    scaleStatus = 'unlocated';
+  if (!location || !placement) {
+    scaleStatus = 'unassigned';
   } else {
-    scaleStatus = status;
+    if (status) scaleStatus = status;
   }
 
   // let status = 'regular';

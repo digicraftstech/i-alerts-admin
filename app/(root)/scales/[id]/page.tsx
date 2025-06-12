@@ -55,7 +55,10 @@ const ScaleDetails = async ({ params }: ScaleParams) => {
   return (
     <div>
       <h1 className='h1-bold text-dark100_light900'>
-        {`${scale.placement.product.product_name} @ ${scale.location.location_name}`}
+        {scale.placement
+          ? `${scale.placement.product.product_name}`
+          : 'No Product'}{' '}
+        @ {scale.location ? `${scale.location.location_name}` : 'No Location'}
       </h1>
       <div className='mt-10 flex w-full flex-col gap-6'>
         {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}

@@ -14,16 +14,16 @@
   --color-app-accent-light: #e2995f;
   --color-app-accent-foreground: #ffffff;
 
-  --color-dark-alerted: #b51016; /* Dark Red*/
+  --color-dark-alerted: #9e1518; /* Dark Red*/
   --color-dark-acknowledged: #35769c; /* Muted dark blue */
-  --color-dark-addressed: #2a824d; /* Dark green */
-  --color-dark-unlocated: #696c70; /* Light gray */
-  --color-dark-regular: #2b2b38; /* Dark gray */
+  --color-dark-addressed: #1d5232; /* Dark green */
+  --color-dark-unassigned: #696c70; /* Light gray */
+  --color-dark-regular: #444459; /* Dark gray */
 
   --color-light-alerted: #faafb4; /* Light red/pink */
   --color-light-acknowledged: #a6ddf7; /* Light blue */
   --color-light-addressed: #c4f5c9; /* Light green */
-  --color-light-unlocated: #dbdbdb; /* Light gray */
+  --color-light-unassigned: #dbdbdb; /* Light gray */
   --color-light-regular: #b4b9bf; /* gray */
 
   --color-primary-100: var(--color-app-accent);
@@ -252,8 +252,8 @@
   @apply !bg-light-addressed dark:!bg-dark-addressed;
 }
 
-.card-background-unlocated {
-  @apply !bg-light-unlocated dark:!bg-dark-unlocated;
+.card-background-unassigned {
+  @apply !bg-light-unassigned dark:!bg-dark-unassigned;
 }
 
 .text-dark100_light900 {

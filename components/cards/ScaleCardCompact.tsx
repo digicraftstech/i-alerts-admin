@@ -21,8 +21,8 @@ const ScaleCardCompact = ({
   },
 }: ScaleCardProps) => {
   let scaleStatus = 'regular';
-  if (!location) {
-    scaleStatus = 'unlocated';
+  if (!location || !placement) {
+    scaleStatus = 'unassigned';
   } else {
     scaleStatus = status;
   }
