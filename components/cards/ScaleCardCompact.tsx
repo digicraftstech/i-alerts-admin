@@ -83,14 +83,14 @@ const ScaleCardCompact = ({
         </div>
       </div>
 
-      <div className='mt-3.5 flex flex-row items-center gap-2'>
+      <div className='mt-3.5 flex flex-row items-center gap-1'>
         <MapPin
           name='location-on'
           size={15}
           // color={Colors.LOCATION_PIN}
         />
         {location
-          ? `${location.location_name}, Fixture: ${location.fixture_no}, Row: ${location.row}`
+          ? `Fixture: ${location.fixture_no}, Row: ${location.row}`
           : 'Location not assigned'}
       </div>
       {/* </Link> */}

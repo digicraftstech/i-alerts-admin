@@ -63,6 +63,12 @@ const ScaleDetails = async ({ params }: ScaleParams) => {
       <div className='mt-10 flex w-full flex-col gap-6'>
         {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}
         <ScaleCardCompact scale={scale} />
+        <h3 className='h3-bold'>
+          {`Alert History`}
+          <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
+            {`(All low threshold alerts raised for this scale.)`}
+          </span>
+        </h3>
         <DataTable data={notifications} columns={notificationColumns} />
       </div>
     </div>
