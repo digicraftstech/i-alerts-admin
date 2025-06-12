@@ -39,6 +39,13 @@ type Reading = {
   reading_datetime: string;
 };
 
+type Device = {
+  device_id: string;
+  device_uid: string;
+  device_name: string;
+  createdAt: string;
+};
+
 type Alert = {
   alert_raised_datetime: string;
   alert_ack_datetime: string;

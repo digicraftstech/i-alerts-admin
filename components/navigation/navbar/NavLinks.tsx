@@ -19,7 +19,7 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
           pathName === item.route;
 
         if (item.route === '/store') {
-          if (storeId) item.route = `/store/${storeId}`;
+          if (storeId) item.route = `/store`;
           else return null;
         }
         const LinkComponent = (
