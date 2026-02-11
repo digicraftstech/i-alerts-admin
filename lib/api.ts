@@ -65,6 +65,12 @@ export const api = {
       }),
     delete: (id: string) =>
       fetchHandler(`${APIScalesURL}/${id}`, { method: 'DELETE' }),
+    calibrate: (id: string) =>
+      fetchHandler(`${APIScalesURL}/${id}/calibrate`, { method: 'PUT' }),
+    tare: (id: string) =>
+      fetchHandler(`${APIScalesURL}/${id}/tare`, { method: 'PUT' }),
+    restart: (id: string) =>
+      fetchHandler(`${APIScalesURL}/${id}/restart`, { method: 'PUT' }),
   },
   products: {
     getAll: () => fetchHandler(`${APIProductsURL}`),
