@@ -14,6 +14,16 @@ export function gramsToPoundsAndOunces(gms: number) {
   };
 }
 
+export function gramsToPounds(gms: number) {
+  const pounds = gms / 453.59237;
+  return Math.round((pounds + Number.EPSILON) * 100) / 100;
+}
+
+export function gramsToKilograms(gms: number) {
+  const kilograms = gms / 1000;
+  return Math.round((kilograms + Number.EPSILON) * 1000) / 1000;
+}
+
 export function gramsToFluidOunces(gms: number) {
   let weightInFlOz = gms / 28.35;
   weightInFlOz = Math.round((weightInFlOz + Number.EPSILON) * 100) / 100;
@@ -40,6 +50,17 @@ export function ouncesToPoundsAndOunces(ozs: number) {
   }
 
   return poundAndOunces;
+}
+
+export function poundsToGrams(lbs: number) {
+  const nearExact = lbs * 453.59237;
+  const gms = Math.round(nearExact);
+  return gms;
+}
+
+export function kilogramsToGrams(gms: number) {
+  const kg = gms * 1000;
+  return kg;
 }
 
 export function weightWithUnit(weightValue: number, unit: string) {
@@ -150,6 +171,18 @@ export function getConvertedWeightString(reading: number, conversion: string) {
           ' lb ' +
           poundsAndOunces.ounces.toFixed(1) +
           ' oz';
+      }
+      break;
+    case 'gm-lb':
+      {
+        const pounds = gramsToPounds(reading);
+        readingWithUnit = pounds + ' lb';
+      }
+      break;
+    case 'gm-kg':
+      {
+        const kg = gramsToKilograms(reading);
+        readingWithUnit = kg.toString() + ' kg';
       }
       break;
     default:

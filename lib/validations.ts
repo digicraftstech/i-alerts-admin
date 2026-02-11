@@ -51,7 +51,7 @@ export const SignUpSchema = z.object({
 
 export const LocationSchema = z.object({
   fixture: z.number().nonnegative(),
-  row: z.enum(['Front', 'Back', 'Center']),
+  row: z.enum(['Front', 'Center', 'Back']),
   location_name: z
     .string()
     .min(6, 'Location should be at least 6 characters long.')
@@ -67,7 +67,6 @@ export const ProductSchema = z
     // product_plu: number().nonnegative('4 or 6 digit PLU code is required.'),
     product_plu: number().int().nonnegative(),
     image: z.string().nonempty('Product image is required.'),
-    weight_unit: z.enum(['lbs', 'kg']).default('lbs'),
   })
   .refine(
     ({ product_plu }: { product_plu: number }) => {
@@ -82,10 +81,79 @@ export const ProductSchema = z
     })
   );
 
-export const AddScaleSchema = z.object({
-  ss_uid: z.string().nonempty('Scale UID is required'),
-  oem_name: z.string().nonempty('Scale OEM is required.'),
-  model_name: z.string().nonempty('Product image is required.'),
+export const AddScaleSchema = z
+  .object({
+    ss_uid: z.string().nonempty('Scale UID is required'),
+    oem_name: z.string().nonempty('Scale OEM is required.'),
+    model_name: z.string().nonempty('Product image is required.'),
+    placement: z
+      .object({
+        allocation_weight: z.number().optional(),
+        threshold_weight: z.number().optional(),
+        weight_unit: z.enum(['lbs', 'kg']).optional(),
+        product_id: z.string().optional(),
+      })
+      .optional(),
+    location: z
+      .object({
+        fixture_no: z.string().optional(),
+        row: z.string().optional(),
+        location_name: z.string().optional(),
+      })
+      .optional(),
+  })
+  .refine(
+    ({ placement }) => {
+      if (placement?.product_id) return placement.weight_unit !== undefined;
+      return true;
+    },
+    () => ({
+      path: ['placement', 'weight_unit'],
+      message: '"Weight unit" is required when adding a product to the scale.',
+    })
+  )
+  .refine(
+    ({ placement }) => {
+      if (placement?.product_id)
+        return placement.allocation_weight !== undefined;
+      return true;
+    },
+    () => ({
+      path: ['placement', 'allocation_weight'],
+      message:
+        '"Allocation weight" is required when adding a product to the scale.',
+    })
+  )
+  .refine(
+    ({ placement }) => {
+      if (placement?.product_id)
+        return placement.threshold_weight !== undefined;
+      return true;
+    },
+    () => ({
+      path: ['placement', 'threshold_weight'],
+      message:
+        '"Threshold weight" is required when adding a product to the scale.',
+    })
+  );
+
+export const UpdateScaleLocationSchema = z.object({
+  location: z.object({
+    fixture_no: z.number(),
+    row: z.number(),
+    location_name: z.string(),
+  }),
+});
+
+export const UpdateScaleProductSchema = z.object({
+  placement: z
+    .object({
+      product_id: z.string().optional(),
+      allocation_weight: z.number().optional(),
+      threshold_weight: z.number().optional(),
+      weight_unit: z.enum(['lbs', 'kg']).optional(),
+    })
+    .optional(),
 });
 
 export const ScaleSchema = z
@@ -102,36 +170,43 @@ export const ScaleSchema = z
       .string()
       .min(6, 'Model should be at least 6 characters long.')
       .max(20, 'Name must not exceed 20 characters.'),
-    allocation_weight: z.number().int().positive().default(0),
-    threshold_weight: z.number().int().positive().default(0),
+    placement: z
+      .object({
+        allocation_weight: z.number().int().positive().default(0),
+        threshold_weight: z.number().int().positive().default(0),
+        weight_unit: z.enum(['lbs', 'kg']).optional(),
+        product_id: z.string().optional(),
+      })
+      .optional(),
     location: z.object({ LocationSchema }).optional(),
-    product: z.object({ ProductSchema }).optional(),
   })
   .refine(
-    ({ allocation_weight, product }) => {
-      if (product) return allocation_weight !== undefined;
+    ({ placement }) => {
+      if (placement?.product_id)
+        return placement.allocation_weight !== undefined;
       return true;
     },
     () => ({
-      path: ['allocation_weight'],
+      path: ['placement', 'allocation_weight'],
       message:
         '"Allocation weight" is required when adding a product to the scale.',
     })
   )
   .refine(
-    ({ threshold_weight, product }) => {
-      if (product) return threshold_weight !== undefined;
+    ({ placement }) => {
+      if (placement?.product_id)
+        return placement.threshold_weight !== undefined;
       return true;
     },
     () => ({
-      path: ['threshold_weight'],
+      path: ['placement', 'threshold_weight'],
       message:
         '"Threshold weight" is required when adding a product to the scale.',
     })
   )
   .refine(
-    ({ location, product }) => {
-      if (product) return location !== undefined;
+    ({ location, placement }) => {
+      if (placement?.product_id) return location !== undefined;
       return true;
     },
     () => ({

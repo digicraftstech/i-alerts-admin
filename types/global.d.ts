@@ -3,10 +3,10 @@ import { NextResponse } from 'next/server';
 type Scale = {
   ss_id: string;
   ss_unique_name: string;
+  oem_name: string;
+  model_name: string;
   last_reading: number;
   last_reading_datetime: string;
-  threshold_weight: number;
-  allocation_weight: number;
   status: string;
   // product: Product;
   placement?: ProductPlacement;
@@ -15,7 +15,11 @@ type Scale = {
 };
 
 type ProductPlacement = {
-  product: Product;
+  product_id?: string;
+  product?: Product;
+  allocation_weight?: number;
+  threshold_weight?: number;
+  weight_unit?: 'lbs' | 'kg';
 };
 
 type Product = {
@@ -23,7 +27,6 @@ type Product = {
   product_name: string;
   product_plu: number;
   image: string;
-  weight_unit: string;
 };
 
 type ScaleLocation = {

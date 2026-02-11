@@ -15,7 +15,6 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { createProduct } from '@/lib/actions/product.action';
 
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { z } from 'zod';
 import { Base64Image } from '../Base64Image';
 import { toast } from 'sonner';
@@ -29,7 +28,6 @@ const ProductForm = () => {
     defaultValues: {
       product_name: '',
       product_plu: 0,
-      weight_unit: 'lbs',
       image: '',
     },
   });
@@ -97,43 +95,6 @@ const ProductForm = () => {
         </div>
 
         <div className='flex flex-row gap-4'>
-          <FormField
-            control={form.control}
-            name='weight_unit'
-            render={({ field }) => (
-              <FormItem className='flex-1'>
-                <FormLabel className='paragraph-semibold text-dark400_light800 mb-2'>
-                  Weight Unit <span className='text-primary-500'>*</span>
-                </FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className='flex flex-col space-y-2'
-                  >
-                    <FormItem className='flex flex-row'>
-                      <FormControl>
-                        <RadioGroupItem value='lbs' />
-                      </FormControl>
-                      <FormLabel className='paragraph-semibold text-dark400_light800 mb-2'>
-                        Lbs
-                      </FormLabel>
-                    </FormItem>
-                    <FormItem className='flex flex-row'>
-                      <FormControl>
-                        <RadioGroupItem value='kg' />
-                      </FormControl>
-                      <FormLabel className='paragraph-semibold text-dark400_light800 mb-2'>
-                        Kg
-                      </FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name='image'

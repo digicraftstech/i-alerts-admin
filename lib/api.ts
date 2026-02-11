@@ -1,7 +1,12 @@
 import { fetchHandler } from './handlers/fetch';
 import { BaseURL, APIProductsURL, APIScalesURL } from '@/constants';
 import { RegisterDeviceParams } from '@/types';
-import { IProduct, IScale } from '@/app/interfaces';
+import {
+  ILocation,
+  IProduct,
+  IProductPlacement,
+  IScale,
+} from '@/app/interfaces';
 
 // A sample fetch
 // fetchHandler(`${API_BASE_URL}/accounts/${id}`, {
@@ -39,6 +44,24 @@ export const api = {
       fetchHandler(`${APIScalesURL}/${id}`, {
         method: 'PUT',
         body: JSON.stringify(scaleData),
+      }),
+    updateLocation: (id: string, locationData: Partial<ILocation>) =>
+      fetchHandler(`${APIScalesURL}/${id}/location`, {
+        method: 'PUT',
+        body: JSON.stringify(locationData),
+      }),
+    updateProductPlacement: (
+      id: string,
+      productData: {
+        product_id?: string;
+        allocation_weight?: number;
+        threshold_weight?: number;
+        weight_unit?: 'kg' | 'lbs';
+      }
+    ) =>
+      fetchHandler(`${APIScalesURL}/${id}/product`, {
+        method: 'PUT',
+        body: JSON.stringify(productData),
       }),
     delete: (id: string) =>
       fetchHandler(`${APIScalesURL}/${id}`, { method: 'DELETE' }),

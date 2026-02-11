@@ -25,6 +25,9 @@ const ProductCard = ({
             <span className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
               {`PLU -${product_plu}`}
             </span>
+            {/* <h6 className='subtle-regular text-dark400_light700 line-clamp-1 flex'>
+              
+            </h6> */}
           </div>
         </div>
       </div>

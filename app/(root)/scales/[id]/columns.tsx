@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { getExactTimeDifference } from '@/lib/utils';
-import { Reading } from '@/types/global';
+import { Reading, Reading } from '@/types/global';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown } from 'lucide-react';
 
@@ -103,6 +103,42 @@ export const notificationColumns: ColumnDef<Notification>[] = [
           new Date(rowValTo),
           new Date(rowValFrom)
         );
+      }
+
+      return <div className='text-left font-medium'>{value}</div>;
+    },
+  },
+];
+
+export const readingsColumns: ColumnDef<Reading>[] = [
+  {
+    accessorKey: 'reading_datetime',
+    header: 'Reading At',
+    cell: ({ row }) => {
+      const dateString = row.getValue('reading_datetime') as string;
+      const formattedDate =
+        new Date(dateString).toLocaleDateString() +
+        ' ' +
+        new Date(dateString).toLocaleTimeString();
+      return (
+        <div className='text-left font-medium'>
+          {formattedDate.toLocaleString()}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: 'weight_reading',
+    header: 'Weight Reading',
+    cell: ({ row }) => {
+      console.log(row);
+      const rowVal = row.getValue('weight_reading');
+
+      let value = '-';
+
+      if (rowVal) {
+        const weight = row.getValue('weight_reading') as string;
+        value = weight.toString();
       }
 
       return <div className='text-left font-medium'>{value}</div>;

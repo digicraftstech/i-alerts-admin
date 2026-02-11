@@ -17,8 +17,6 @@ const ScaleCard = ({
     ss_unique_name,
     last_reading,
     last_reading_datetime,
-    threshold_weight,
-    allocation_weight,
     location,
     // alert,
     // product,
@@ -102,14 +100,20 @@ const ScaleCard = ({
           <div className='mt-3.5'>
             <div className='mt-1 '>
               <Metric
-                value={getConvertedWeightString(allocation_weight, 'oz-lboz')}
+                value={getConvertedWeightString(
+                  placement?.allocation_weight ?? 0,
+                  placement.weight_unit === 'lbs' ? 'gm-lb' : 'gm-kg'
+                )}
                 title='Allocation Weight: '
                 textStyles='small-medium text-dark400_light800'
               />
             </div>
             <div className='mt-1 '>
               <Metric
-                value={getConvertedWeightString(threshold_weight, 'oz-lboz')}
+                value={getConvertedWeightString(
+                  placement?.threshold_weight ?? 0,
+                  placement.weight_unit === 'lbs' ? 'gm-lb' : 'gm-kg'
+                )}
                 title='Threshold Weight: '
                 textStyles='small-medium text-dark400_light800'
               />

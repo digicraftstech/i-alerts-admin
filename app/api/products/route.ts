@@ -40,13 +40,12 @@ export async function POST(request: Request) {
     if (!validatedData.success) {
       throw new ValidationError(validatedData.error.flatten().fieldErrors);
     }
-    const { image, product_name, product_plu, weight_unit } =
-      validatedData.data;
+    const { image, product_name, product_plu } = validatedData.data;
 
     const res = await fetch(`${BaseURL}/products`, {
       method: 'POST',
       headers: headers,
-      body: JSON.stringify({ product_name, product_plu, image, weight_unit }),
+      body: JSON.stringify({ product_name, product_plu, image }),
     });
 
     return NextResponse.json({ success: true, data: { res } }, { status: 201 });

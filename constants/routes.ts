@@ -5,6 +5,7 @@ const ROUTES = {
   CATALOG: '/product',
   STORE: '/store',
   SCALE: (id: string) => `/scales/${id}`,
+  CALIBRATE: (id: string) => `/scales/${id}/calibrate`,
   ADD_SCALE: '/add-scale',
   ADD_PRODUCT: '/add-product',
 };

@@ -1,7 +1,11 @@
 import { getConvertedWeightString } from '@/lib/conversions';
 import { getDateTimeString } from '@/lib/utils';
 import { Scale } from '@/types/global';
-import { MapPin } from 'lucide-react';
+import { CirclePower, MapPin, Power, RotateCcwSquare } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Edit, Weight } from 'lucide-react';
+import Link from 'next/link';
+import ROUTES from '@/constants/routes';
 
 import React from 'react';
 
@@ -11,6 +15,7 @@ interface ScaleCardProps {
 
 const ScaleCardCompact = ({
   scale: {
+    ss_id,
     ss_unique_name,
     last_reading,
     last_reading_datetime,
@@ -45,7 +50,7 @@ const ScaleCardCompact = ({
       className={`card-wrapper rounded-[10px] min-w-[300px] p-9 sm:px-11 ${bgColor}`}
     >
       {/* <Link href={ROUTES.SCALE(ss_id)}> */}
-      <div>
+      <div className='flex flex-row justify-between'>
         <div>
           <span className='small-medium text-dark400_light700 line-clamp-1 flex'>
             {ss_unique_name}
@@ -55,6 +60,28 @@ const ScaleCardCompact = ({
               ? `${placement?.product.product_plu} ${placement?.product.product_name}`
               : 'Product not assigned'}
           </h3>
+        </div>
+        <div className='flex flex-row gap-2'>
+          <Button variant='outline' size='icon' asChild>
+            <Link href={ROUTES.SCALE(ss_id)} title='Edit'>
+              <Edit className='absolute h-[1.2rem] w-[1.2rem]' />
+            </Link>
+          </Button>
+          <Button variant='outline' size='icon' asChild>
+            <Link href={ROUTES.CALIBRATE(ss_id)} title='Calibrate'>
+              <Weight className='absolute h-[1.2rem] w-[1.2rem]' />
+            </Link>
+          </Button>
+          <Button variant='outline' size='icon' asChild>
+            <Link href={ROUTES.CALIBRATE(ss_id)} title='Restart'>
+              <Power className='absolute h-[1.2rem] w-[1.2rem]' />
+            </Link>
+          </Button>
+          <Button variant='outline' size='icon' asChild>
+            <Link href={ROUTES.CALIBRATE(ss_id)} title='Tare'>
+              <RotateCcwSquare className='absolute h-[1.2rem] w-[1.2rem]' />
+            </Link>
+          </Button>
         </div>
       </div>
 

@@ -11,9 +11,6 @@ export interface IScale {
   ss_unique_name?: string;
   last_reading?: number;
   last_reading_datetime?: Date;
-  threshold_weight?: number;
-  allocation_weight?: number;
-  weight_unit?: 'kg' | 'lbs';
   status?: null | string;
   placement?: IProductPlacement;
   location?: null | ILocation;
@@ -22,8 +19,12 @@ export interface IScale {
 }
 
 export interface IProductPlacement {
-  product: IProduct;
-  scale: IScale;
+  product_id?: string;
+  // product?: IProduct;
+  // scale: IScale;
+  allocation_weight?: number;
+  threshold_weight?: number;
+  weight_unit?: 'kg' | 'lbs';
 }
 
 export interface IProduct {
@@ -31,7 +32,6 @@ export interface IProduct {
   product_id: string;
   product_name: string;
   product_plu: number;
-  weight_unit: 'kg' | 'lbs';
 }
 
 export interface ILocation {

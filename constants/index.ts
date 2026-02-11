@@ -7,6 +7,12 @@ export const APIScalesURL = `${BaseURL}/scales`;
 export const APIProductsURL = `${BaseURL}/products`;
 export const APIRegisterURL = `${BaseURL}/register`;
 
+export const ROW_OPTIONS = [
+  { label: 'Front', value: '1' },
+  { label: 'Center', value: '2' },
+  { label: 'Back', value: '3' },
+];
+
 export const sideBarLinks = [
   {
     imgURL: '/icons/home.svg',
