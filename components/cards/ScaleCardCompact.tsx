@@ -3,17 +3,28 @@
 import { getConvertedWeightString } from '@/lib/conversions';
 import { getDateTimeString } from '@/lib/utils';
 import { Scale } from '@/types/global';
-import { Delete, MapPin, Power, RotateCcwSquare, Trash } from 'lucide-react';
+import {
+  Delete,
+  Edit,
+  MapPin,
+  Power,
+  RotateCcwSquare,
+  Weight,
+  // Trash,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Edit, Weight } from 'lucide-react';
+
 import Link from 'next/link';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants';
 import { toast } from 'sonner';
 
 import React, { useState } from 'react';
+import Indicator from '../Indicator';
 
 interface ScaleCardProps {
   scale: Scale;
+  onEditClick?: () => void;
+  isEditing?: boolean;
 }
 
 const ScaleCardCompact = ({
@@ -22,11 +33,14 @@ const ScaleCardCompact = ({
     ss_unique_name,
     last_reading,
     last_reading_datetime,
-    // alert,
+    battery_level,
+    rssi_level,
     status,
     placement,
     location,
   },
+  onEditClick,
+  isEditing = false,
 }: ScaleCardProps) => {
   let scaleStatus = 'regular';
   if (!location || !placement) {
@@ -124,9 +138,15 @@ const ScaleCardCompact = ({
       {/* <Link href={ROUTES.SCALE(ss_id)}> */}
       <div className='flex flex-row justify-between'>
         <div>
-          <span className='small-medium text-dark400_light700 line-clamp-1 flex'>
-            {ss_unique_name}
-          </span>
+          <div className='flex w-full flex-row items-center justify-between gap-2'>
+            <span className='subtle-regular text-dark400_light700 line-clamp-1 min-w-0 flex-1'>
+              {ss_unique_name}
+            </span>
+            <div className='flex shrink-0 flex-row items-end gap-2'>
+              <Indicator type='signal' level={rssi_level} />
+              <Indicator type='battery' level={battery_level} />
+            </div>
+          </div>
           <h3 className='base-semibold'>
             {placement?.product
               ? `${placement?.product.product_plu} ${placement?.product.product_name}`
@@ -134,11 +154,23 @@ const ScaleCardCompact = ({
           </h3>
         </div>
         <div className='flex flex-row gap-2'>
-          <Button variant='outline' size='icon' asChild>
-            <Link href={ROUTES.SCALE(ss_id)} title='Edit'>
-              <Trash className='absolute h-[1.2rem] w-[1.2rem]' />
-            </Link>
-          </Button>
+          {onEditClick ? (
+            <Button
+              variant='outline'
+              size='icon'
+              onClick={onEditClick}
+              title='Edit'
+              className={isEditing ? 'border-primary-500 text-primary-500' : ''}
+            >
+              <Edit className='absolute h-[1.2rem] w-[1.2rem]' />
+            </Button>
+          ) : (
+            <Button variant='outline' size='icon' asChild>
+              <Link href={ROUTES.SCALE(ss_id)} title='Edit'>
+                <Edit className='absolute h-[1.2rem] w-[1.2rem]' />
+              </Link>
+            </Button>
+          )}
           <Button
             variant='outline'
             size='icon'

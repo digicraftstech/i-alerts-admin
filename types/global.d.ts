@@ -7,6 +7,9 @@ type Scale = {
   model_name: string;
   last_reading: number;
   last_reading_datetime: string;
+  battery_level: number;
+  rssi_level: number;
+  hb_datetime: string;
   status: string;
   // product: Product;
   placement?: ProductPlacement;

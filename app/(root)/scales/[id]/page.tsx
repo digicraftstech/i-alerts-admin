@@ -1,8 +1,7 @@
 import React from 'react';
 import ReadingsTable from './readings-table';
 
-import ScaleCardCompact from '@/components/cards/ScaleCardCompact';
-import ScaleForm from '@/components/forms/ScaleForm';
+import ScaleDetailsClient from './scale-details-client';
 import { BaseURL, iAlertsToken } from '@/constants';
 
 const getScale = async (id: string) => {
@@ -44,12 +43,7 @@ const ScaleDetails = async ({ params }: ScaleParams) => {
       </div>
       <div className='mt-10 flex w-full flex-col gap-6'>
         {/* <div className='flex flex-col mx-auto py-10 gap-6'> */}
-        <ScaleCardCompact scale={scale} />
-
-        <div className='mt-9'>
-          <h2 className='h2-bold text-dark100_light900 mb-5'>Edit Scale</h2>
-          <ScaleForm scale={scale} />
-        </div>
+        <ScaleDetailsClient scale={scale} />
 
         <h3 className='h3-bold'>
           {/* {`Alert History`} */}

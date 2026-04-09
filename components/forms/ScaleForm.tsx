@@ -42,7 +42,7 @@ import {
   SelectLabel,
   SelectItem,
 } from '../ui/select';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants';
 import {
   gramsToKilograms,
   gramsToPounds,
@@ -52,9 +52,10 @@ import { poundsToGrams } from '@/lib/conversions';
 
 interface ScaleFormProps {
   scale?: Scale;
+  onActionComplete?: () => void;
 }
 
-const ScaleForm = ({ scale }: ScaleFormProps) => {
+const ScaleForm = ({ scale, onActionComplete }: ScaleFormProps) => {
   const router = useRouter();
   const isEditMode = !!scale;
   const [products, setProducts] = useState<Product[]>([]);
@@ -89,24 +90,26 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
       ? gramsToPounds(scale?.placement?.threshold_weight ?? 0)
       : gramsToKilograms(scale?.placement?.threshold_weight ?? 0);
 
+  const defaultValues = {
+    ss_uid: scale?.ss_unique_name || '',
+    oem_name: scale?.oem_name || '',
+    model_name: scale?.model_name || '',
+    location: {
+      fixture_no: initialLocation.fixture_no,
+      row: initialLocation.row,
+      location_name: initialLocation.location_name,
+    },
+    placement: {
+      allocation_weight: initialAllocationWeight,
+      threshold_weight: initialThresholdWeight,
+      weight_unit: initialProduct.weight_unit,
+      product_id: initialProduct.product_id,
+    },
+  };
+
   const form = useForm({
     resolver: zodResolver(AddScaleSchema),
-    defaultValues: {
-      ss_uid: scale?.ss_unique_name || '',
-      oem_name: scale?.oem_name || '',
-      model_name: scale?.model_name || '',
-      location: {
-        fixture_no: initialLocation.fixture_no,
-        row: initialLocation.row,
-        location_name: initialLocation.location_name,
-      },
-      placement: {
-        allocation_weight: initialAllocationWeight,
-        threshold_weight: initialThresholdWeight,
-        weight_unit: initialProduct.weight_unit,
-        product_id: initialProduct.product_id,
-      },
-    },
+    defaultValues,
   });
 
   // useEffect(() => {
@@ -163,6 +166,7 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
 
     if (result.success) {
       toast.info(isEditMode ? 'Scale updated.' : 'Scale added.');
+      onActionComplete?.();
       redirect(isEditMode ? ROUTES.SCALE(scale!.ss_id) : ROUTES.HOME);
     } else {
       form.setError('root', { message: result.error?.message });
@@ -195,6 +199,8 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
 
     if (result.success) {
       toast.info('Location updated.');
+      onActionComplete?.();
+      router.refresh();
     } else {
       toast.error(result.error?.message ?? 'Failed to update location.');
     }
@@ -206,6 +212,7 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
     form.setValue('location.fixture_no', initialLocation.fixture_no);
     form.setValue('location.row', initialLocation.row);
     form.setValue('location.location_name', initialLocation.location_name);
+    onActionComplete?.();
   };
 
   const handleUpdateProduct = async () => {
@@ -242,6 +249,8 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
 
     if (result.success) {
       toast.info('Product updated.');
+      onActionComplete?.();
+      router.refresh();
     } else {
       toast.error(result.error?.message ?? 'Failed to update product.');
     }
@@ -255,6 +264,21 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
     setSelectedProductImage(
       scale?.placement?.product?.image ?? '/images/placeholder.svg'
     );
+    onActionComplete?.();
+  };
+
+  const handleCancelScale = () => {
+    form.reset(defaultValues);
+    setSelectedProductImage(
+      scale?.placement?.product?.image ?? '/images/placeholder.svg'
+    );
+
+    if (isEditMode && onActionComplete) {
+      onActionComplete();
+      return;
+    }
+
+    router.back();
   };
 
   return (
@@ -340,7 +364,7 @@ const ScaleForm = ({ scale }: ScaleFormProps) => {
             type='button'
             variant='outline'
             className='w-fit'
-            onClick={() => router.back()}
+            onClick={handleCancelScale}
           >
             Cancel
           </Button>

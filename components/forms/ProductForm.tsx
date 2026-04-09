@@ -19,7 +19,7 @@ import { z } from 'zod';
 import { Base64Image } from '../Base64Image';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants';
 
 const ProductForm = () => {
   const form = useForm({

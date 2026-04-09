@@ -10,21 +10,25 @@
   --font-inter: var(--font-inter);
   --font-space-grotesk: var(--font-space-grotesk);
 
+  --color-level-normal: #16a34a;
+  --color-level-low: #dc2626;
+
   --color-app-accent: #ff6600;
   --color-app-accent-light: #e2995f;
   --color-app-accent-foreground: #ffffff;
 
-  --color-dark-alerted: #9e1518; /* Dark Red*/
+  --color-dark-unassigned: #948e54;
+  --color-dark-regular: #696c70; /* Light gray */
   --color-dark-acknowledged: #35769c; /* Muted dark blue */
   --color-dark-addressed: #1d5232; /* Dark green */
-  --color-dark-unassigned: #696c70; /* Light gray */
-  --color-dark-regular: #444459; /* Dark gray */
+  /* --color-dark-alerted: #9e1518; Dark Red */
+  --color-dark-alerted: #7a2717; /* Dark Red*/
 
-  --color-light-alerted: #faafb4; /* Light red/pink */
+  --color-light-unassigned: #f5ec8e; /* gray */
+  --color-light-regular: #dbdbdb; /* Light gray */
   --color-light-acknowledged: #a6ddf7; /* Light blue */
   --color-light-addressed: #c4f5c9; /* Light green */
-  --color-light-unassigned: #dbdbdb; /* Light gray */
-  --color-light-regular: #b4b9bf; /* gray */
+  --color-light-alerted: #faafb4; /* Light red/pink */
 
   --color-primary-100: var(--color-app-accent);
 
@@ -236,10 +240,6 @@
   @apply dark:bg-dark-400 bg-light-900;
 }
 
-.card-background-regular {
-  @apply !bg-light-regular dark:!bg-dark-regular;
-}
-
 .card-background-alerted {
   @apply !bg-light-alerted dark:!bg-dark-alerted;
 }
@@ -254,6 +254,10 @@
 
 .card-background-unassigned {
   @apply !bg-light-unassigned dark:!bg-dark-unassigned;
+}
+
+.card-background-regular {
+  @apply !bg-light-regular dark:!bg-dark-regular;
 }
 
 .text-dark100_light900 {

@@ -23,7 +23,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { toTitleCase } from '@/lib/utils';
 import Link from 'next/link';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants';
 
 interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;

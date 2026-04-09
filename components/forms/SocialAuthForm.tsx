@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { signIn } from 'next-auth/react';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants';
 
 const SocialAuthForm = () => {
   const handleSignIn = async (provider: 'google') => {
