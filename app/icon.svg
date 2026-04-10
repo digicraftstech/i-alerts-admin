@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="iAlerts app icon">
+  <defs>
+    <linearGradient id="bg" x1="16" y1="12" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#174cff"/>
+      <stop offset="1" stop-color="#0f1f4d"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="30" y1="24" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg)"/>
+  <rect x="16" y="16" width="96" height="96" rx="22" fill="url(#glow)"/>
+
+  <path d="M40 54C40 42.95 48.95 34 60 34H68C79.05 34 88 42.95 88 54V74H40V54Z"
+        fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="50" y="40" width="28" height="12" rx="6" fill="#ffffff"/>
+  <path d="M64 46L72 42" stroke="#174cff" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="30" y="82" width="68" height="12" rx="6" fill="#ff7a1a"/>
+  <rect x="42" y="72" width="44" height="8" rx="4" fill="#ffffff" opacity="0.9"/>
+
+  <circle cx="92" cy="34" r="12" fill="#ff7a1a"/>
+  <path d="M92 28V35" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="92" cy="40" r="2.5" fill="#ffffff"/>
+</svg>
